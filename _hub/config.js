@@ -25,7 +25,7 @@ window.HUB_CONFIG = {
   /* --- Donativos / pagos --------------------------------------------
      Pega tus enlaces. Si dejas uno vacío, ese botón no aparece.      */
   pagos: {
-    paypal: "",        // ej: https://www.paypal.com/donate/?hosted_button_id=XXXX
+    paypal: "https://www.paypal.com/donate/?hosted_button_id=X5NXQ97CKGL38",        // ej: https://www.paypal.com/donate/?hosted_button_id=XXXX
     mercadopago: "https://link.mercadopago.com.ar/valia2026",   // ej: https://link.mercadopago.com.ar/tuusuario
   },
 

@@ -167,6 +167,7 @@
     $("#modalTitle").textContent = mode === "login" ? "Inicia sesión" : "Crea tu cuenta";
     $("#modalSub").textContent = mode === "login" ? "Accede para subir y guardar tus apuntes." : "Es gratis. Solo necesitas un correo.";
     $("#authSubmit").textContent = mode === "login" ? "Entrar" : "Crear cuenta";
+    $$(".modal .signup-only").forEach((el) => { el.hidden = mode !== "signup"; });
     setMsg("", "");
   }));
 
@@ -176,11 +177,12 @@
     currentUser = user;
     const chip = $("#userChip"), loginBtn = $("#loginNavBtn");
     if (user) {
-      const email = user.email || "Estudiante";
+      const meta = user.user_metadata || {};
+      const name = user.username || meta.username || meta.full_name || user.email || "Estudiante";
       chip.classList.add("show");
       loginBtn.style.display = "none";
-      $("#userEmail").textContent = email;
-      $("#userAv").textContent = email[0].toUpperCase();
+      $("#userEmail").textContent = name;
+      $("#userAv").textContent = (name[0] || "U").toUpperCase();
       $("#uploadForm").hidden = false;
       $("#uploadLocked").hidden = true;
     } else {
@@ -204,19 +206,29 @@
   $("#authSubmit").addEventListener("click", async () => {
     const email = $("#authEmail").value.trim();
     const pass = $("#authPass").value;
+    const isSignup = mode === "signup";
+    const username = $("#authUser").value.trim();
+    const pass2 = $("#authPass2").value;
+
     if (!email || !pass) { setMsg("Completa correo y contraseña.", "err"); return; }
+    if (isSignup) {
+      if (!username) { setMsg("Elegí un nombre de usuario.", "err"); return; }
+      if (pass.length < 6) { setMsg("La contraseña debe tener al menos 6 caracteres.", "err"); return; }
+      if (pass !== pass2) { setMsg("Las contraseñas no coinciden.", "err"); return; }
+    }
     setMsg("Procesando…", "");
     if (DEMO) {
-      demoStore.setUser({ email });
-      renderUser({ email });
+      const u = { email, username: isSignup ? username : undefined };
+      demoStore.setUser(u);
+      renderUser(u);
       setMsg("Listo (modo demo).", "ok");
       setTimeout(closeModal, 700); loadApuntes(); return;
     }
     try {
-      if (mode === "signup") {
-        const { error } = await sb.auth.signUp({ email, password: pass });
+      if (isSignup) {
+        const { error } = await sb.auth.signUp({ email, password: pass, options: { data: { username } } });
         if (error) throw error;
-        setMsg("Cuenta creada. Revisa tu correo si pide confirmación.", "ok");
+        setMsg("Cuenta creada. Ya podés iniciar sesión.", "ok");
       } else {
         const { error } = await sb.auth.signInWithPassword({ email, password: pass });
         if (error) throw error;
