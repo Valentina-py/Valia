@@ -34,7 +34,8 @@ window.HUB_CONFIG = {
      Mientras esté vacío, se muestran espacios de anuncio discretos
      y NO se carga ningún script de terceros.                          */
   ads: {
-    adsenseClient: "",   // ej: ca-pub-1234567890123456
+    // Ya colocado también en el <head> de todas las páginas (método recomendado por Google).
+    adsenseClient: "ca-pub-2566809183716381",   // ej: ca-pub-1234567890123456
   },
 
   /* --- Materias (tus webs ya creadas) -------------------------------

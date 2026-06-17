@@ -124,14 +124,9 @@
   }
   if (!anyPay) $("#noPay").hidden = false;
 
-  /* ---------- Anuncios ---------- */
-  if (C.ads && C.ads.adsenseClient) {
-    const s = document.createElement("script");
-    s.async = true;
-    s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${C.ads.adsenseClient}`;
-    s.crossOrigin = "anonymous";
-    document.head.appendChild(s);
-  }
+  /* ---------- Anuncios ----------
+     El script de AdSense se carga estáticamente desde el <head> del HTML
+     (método recomendado por Google). El client queda en config.js solo como referencia. */
 
   /* ======================================================================
      AUTENTICACIÓN + APUNTES
