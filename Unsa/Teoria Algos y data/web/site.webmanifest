@@ -1,0 +1,19 @@
+{
+  "name": "Algoritmos y Estructuras de Datos",
+  "short_name": "Algoritmos",
+  "description": "Algoritmos y Estructuras de Datos: TADs, grafos, árboles, teoría de números y aritmética modular.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07060C",
+  "theme_color": "#8B5CF6",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

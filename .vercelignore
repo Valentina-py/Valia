@@ -1,0 +1,7 @@
+# Archivos internos que no necesitan publicarse
+**/.git
+**/node_modules
+CLAUDE.md
+_hub/GUIA.md
+**/README.md
+**/ideas.txt

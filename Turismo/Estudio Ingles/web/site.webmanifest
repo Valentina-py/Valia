@@ -1,0 +1,14 @@
+{
+  "name": "Inglés para el Turismo I",
+  "short_name": "Inglés Turismo",
+  "description": "Plataforma de estudio de Inglés para el Turismo I (nivel A1): gramática, vocabulario, frases, juegos y autoevaluación.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07060C",
+  "theme_color": "#8B5CF6",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

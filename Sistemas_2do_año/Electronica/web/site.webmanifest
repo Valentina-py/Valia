@@ -1,0 +1,19 @@
+{
+  "name": "Estudio Electrónica",
+  "short_name": "Electrónica",
+  "description": "Análisis de Circuitos: Ley de Ohm, serie y paralelo, teoremas de red, capacitores, inductores y corriente alterna.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07060C",
+  "theme_color": "#8B5CF6",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

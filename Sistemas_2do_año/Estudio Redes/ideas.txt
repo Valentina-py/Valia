@@ -1,0 +1,89 @@
+============================================================
+ ESTUDIO REDES — IDEAS PARA MODIFICAR / AGREGAR
+ (lista de mejoras pendientes · actualizar a medida que se hagan)
+============================================================
+
+Estado actual (lo que YA tiene):
+- 7 unidades de teoría (Introducción, Aplicación, Transporte, Red+IP,
+  Enlace, Modelo de Capas, Seguridad), cada una con quiz y flashcards.
+- 3 herramientas: calculadora de subredes, retardos/throughput,
+  protocolos por capa.
+- Sección de Juegos (7): subneteo exprés, puerto<->servicio, TCP/UDP,
+  clase de IP, pública/privada, ordená la secuencia, memotest de siglas.
+- Simulacro de parcial cronometrado con nota y revisión.
+- Ejercicios resueltos (cálculo, tipo parcial, subredes).
+- Labs de Packet Tracer (guía + modo interactivo + simulador de red).
+- 8 mazos de flashcards (uno por unidad + repaso).
+- Sistema de XP, progreso en localStorage, buscador, modo claro/oscuro, PWA.
+
+
+------------------------------------------------------------
+ RÁPIDAS Y DE ALTO IMPACTO
+------------------------------------------------------------
+
+[ ] 1. Repaso espaciado (modo "Anki") en las flashcards
+       - Botones "La sabía" / "Repasar" en cada tarjeta.
+       - El mazo prioriza las que se fallan (sistema Leitner / Anki-lite).
+       - Es la mejora que más cambia el estudio real.
+
+[ ] 2. Logros y racha (gamificación)
+       - Medallas: "completaste todas las unidades", "10/10 en el
+         simulacro", "jugaste todos los juegos", "3 días seguidos", etc.
+       - Contador de racha diaria.
+       - Engancha y prepara el terreno para los Tops.
+
+[ ] 3. Glosario de siglas buscable
+       - TCP, UDP, IP, MTU, NAT, CIDR, DHCP, ARP, ICMP, MAC, RTT...
+       - Página con todas las definiciones; repaso exprés antes del parcial.
+
+
+------------------------------------------------------------
+ MÁS VISTOSAS / AMBICIOSAS
+------------------------------------------------------------
+
+[ ] 4. Animaciones paso a paso
+       - Saludo de 3 pasos de TCP (SYN -> SYN-ACK -> ACK).
+       - Encapsulamiento bajando por las capas (mensaje -> bits).
+       - Viaje de un paquete entre routers.
+
+[ ] 5. Diagrama interactivo del modelo de capas
+       - Tocar una capa resalta su PDU, protocolos y dispositivos.
+       - Arrastrar un dato para ver cómo se encapsula/desencapsula.
+
+[ ] 6. Subnetting VLSM
+       - El generador actual usa máscaras fijas.
+       - Sumar ejercicios de VLSM: dividir una red según la cantidad
+         de hosts pedida por cada subred.
+
+
+------------------------------------------------------------
+ LA GRANDE (ya planeada por Valentina)
+------------------------------------------------------------
+
+[ ] 7. Tops / tabla de posiciones (leaderboard online)
+       - Pedir apodo + backend gratis (Firebase o Supabase).
+       - Rankear el XP online entre usuarios.
+       - La base de XP ya es 100% determinista (total = suma de mejores
+         esfuerzos), lista para enviar a un ranking.
+       - PASO PREVIO útil: exportar / importar progreso (JSON), para no
+         perder el avance entre dispositivos.
+
+
+------------------------------------------------------------
+ OTRAS / EXTRAS
+------------------------------------------------------------
+
+[ ] Más laboratorios de Packet Tracer (si aparecen nuevos PDFs).
+[ ] Atajos de teclado (flechas en flashcards/quiz, 1-4 para responder).
+[ ] Estadísticas personales (unidad más floja, intentos por quiz).
+[ ] Replicar el sistema de XP / juegos a Matemática e Inglés.
+
+
+------------------------------------------------------------
+ RECOMENDACIÓN DE ORDEN
+------------------------------------------------------------
+ 1) Repaso espaciado + Logros/racha  (rápidas, gran impacto)
+ 2) Glosario  (quick win)
+ 3) Animaciones / diagrama interactivo  (vistoso)
+ 4) Tops/leaderboard  (cuando se quiera meter backend)
+============================================================

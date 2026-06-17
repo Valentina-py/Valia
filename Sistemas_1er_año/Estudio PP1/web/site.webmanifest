@@ -1,0 +1,19 @@
+{
+  "name": "Estudio PP1",
+  "short_name": "PP1",
+  "description": "Prácticas Profesionalizantes I — Operador Básico de Computadora: hardware, software, mantenimiento e informes.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07060C",
+  "theme_color": "#8B5CF6",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

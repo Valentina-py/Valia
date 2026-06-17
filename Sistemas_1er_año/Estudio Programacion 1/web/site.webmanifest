@@ -1,0 +1,19 @@
+{
+  "name": "Estudio Programación 1",
+  "short_name": "Programación 1",
+  "description": "Programación 1 en lenguaje C: teoría, intérprete propio, herramientas, práctica y juegos.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07060C",
+  "theme_color": "#8B5CF6",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

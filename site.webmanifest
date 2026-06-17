@@ -1,0 +1,19 @@
+{
+  "name": "Valía · Hub de estudio",
+  "short_name": "Valía",
+  "description": "Todas tus materias, apuntes y prácticas reunidos en un solo lugar.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07060C",
+  "theme_color": "#8B5CF6",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

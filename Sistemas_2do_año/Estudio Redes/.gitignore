@@ -1,0 +1,6 @@
+# Libro/PDF pesado (no se sube al repo)
+*.pdf
+
+# Sistema
+Thumbs.db
+.DS_Store

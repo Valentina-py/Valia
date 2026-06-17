@@ -1,0 +1,19 @@
+{
+  "name": "Sistemas de Computación",
+  "short_name": "Sist. Computación",
+  "description": "Sistemas de Computación: representación de la información, álgebra de Boole, CPU, memoria y ensamblador.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07060C",
+  "theme_color": "#8B5CF6",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

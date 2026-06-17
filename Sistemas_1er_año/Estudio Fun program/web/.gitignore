@@ -1,0 +1,8 @@
+node_modules/
+package-lock.json
+package.json
+_test*.js
+_extract.txt
+*.log
+.DS_Store
+.vercel
