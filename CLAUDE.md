@@ -9,10 +9,12 @@ Cuando el usuario abra esta carpeta, saluda en español, recuerda que estamos co
 su hub de estudio y pregunta en qué quiere avanzar hoy. NO inventes datos: usa solo los reales.
 
 ## Estructura
-- `index.html` ............ Hub principal (hero, materias, apuntes, login, anuncios, donativos)
+- `index.html` ............ Hub principal (hero, materias, lista pública de apuntes, login, anuncios, donativos)
+- `panel.html` ........... Página de panel del usuario (perfil, estadísticas, subir apuntes, "mis apuntes"). Se abre con el engranaje del navbar.
 - `_hub/config.js` ........ ÚNICO archivo que edita la usuaria: marca, claves Supabase, pagos, materias
 - `_hub/hub.css` .......... Estilos. Tema claro = menta + carbón · Tema oscuro = violeta eléctrico + negro
-- `_hub/hub.js` ........... Lógica: tema, animaciones de scroll, auth (email + Google), apuntes
+- `_hub/hub.js` ........... Lógica del hub: tema, scroll, auth (email + Google), lista pública de apuntes
+- `_hub/panel.js` ........ Lógica de panel.html: auth-guard, subir apuntes (con materia/institución libre), mis apuntes, borrar
 - `_hub/GUIA.md` .......... Pasos para activar Supabase, Google y pagos
 - `Sistemas_1er_año/`, `Sistemas_2do_año/`, `Turismo/`, `Unsa/` ... webs de cada materia
 
@@ -40,6 +42,11 @@ Definidas en `_hub/config.js` → `grupos`. Rutas relativas con espacios en %20:
   **Entrar** (`.topbar__login` → `index.html#entrar`). El hub abre el modal de login solo al detectar
   `#entrar`/`#login` (ver `_hub/hub.js`). Ruta al hub: `../../../index.html` (Redes: `../../index.html`).
 - CSS de esos botones: bloque "Navegación al hub Valía" al final de cada `css/styles.css`.
+- Cada materia tiene un script inline antes de `</body>` que lee la sesión de Supabase de localStorage
+  (mismo dominio, clave `sb-*-auth-token`) y, si hay sesión, cambia "Entrar" por el nombre de usuario
+  y lo enlaza a `panel.html`. Así las materias reflejan el login.
+- En el hub, el engranaje `#panelBtn` (visible al loguearse) navega a `panel.html`. El upload y "mis apuntes"
+  viven SOLO en panel.html (antes estaban en el hub).
 
 ## Publicidad (decisión: hub + materias)
 - AdSense va en el hub Y en cada materia (franja fina, no invasiva). Requiere sitio publicado + aprobación
