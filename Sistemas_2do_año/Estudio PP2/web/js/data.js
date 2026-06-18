@@ -325,6 +325,147 @@ btn.addEventListener("click", function () {
       { q: "¿Qué es el DOM?", a: "La representación de la página que JS puede leer y modificar (document.getElementById, etc.)." },
       { q: "Escuchar un evento", a: "elemento.addEventListener('click', función) reacciona a la acción del usuario." },
     ]
+  },
+
+  /* ===================================================================
+     UNIDAD 5 — PROYECTO INTEGRADOR
+     =================================================================== */
+  {
+    id: "proyecto",
+    glyph: "★",
+    icon: "tool",
+    title: "Proyecto integrador",
+    desc: "Armar una landing page paso a paso combinando HTML, CSS y JavaScript.",
+    tool: "editor",
+    html: `
+      <p class="lead">Vamos a juntar todo lo aprendido en una <strong>landing page</strong> simple. Copiá cada parte en el <a href="#/tool/editor">Editor en vivo</a> y andá viendo el resultado.</p>
+
+      <h2>Paso 1 · La estructura (HTML)</h2>
+      <p>Usamos etiquetas semánticas: <code>&lt;header&gt;</code> con el menú, <code>&lt;main&gt;</code> con el contenido y <code>&lt;footer&gt;</code>.</p>
+      <pre>&lt;header&gt;
+  &lt;nav class="menu"&gt;
+    &lt;a href="#"&gt;Inicio&lt;/a&gt;
+    &lt;a href="#"&gt;Servicios&lt;/a&gt;
+    &lt;a href="#"&gt;Contacto&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;section class="hero"&gt;
+    &lt;h1&gt;Mi primer sitio&lt;/h1&gt;
+    &lt;p&gt;Hecho con HTML, CSS y JavaScript.&lt;/p&gt;
+    &lt;button id="btn"&gt;Saludar&lt;/button&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;&lt;p&gt;© 2026 · Mi sitio&lt;/p&gt;&lt;/footer&gt;</pre>
+
+      <h2>Paso 2 · El diseño (CSS)</h2>
+      <p>Variables de color, Flexbox para el menú, un degradado en el hero y diseño responsive.</p>
+      <pre>:root { --primario: #7C3AED; --secundario: #EC4899; }
+* { box-sizing: border-box; margin: 0; font-family: system-ui, sans-serif; }
+
+.menu { display: flex; gap: 14px; background: #14111F; padding: 14px; }
+.menu a { color: #fff; text-decoration: none; }
+.menu a:hover { color: var(--secundario); }
+
+.hero {
+  text-align: center; padding: 60px 20px; color: #fff;
+  background: linear-gradient(135deg, var(--primario), var(--secundario));
+}
+.hero button {
+  margin-top: 16px; padding: 10px 20px; border: 0; border-radius: 10px;
+  background: #fff; color: var(--primario); font-weight: 700; cursor: pointer;
+}
+footer { text-align: center; padding: 18px; color: #666; }
+
+@media (max-width: 599px) { .menu { flex-direction: column; } }</pre>
+
+      <h2>Paso 3 · La interactividad (JavaScript)</h2>
+      <pre>document.getElementById("btn").addEventListener("click", function () {
+  alert("¡Hola! Gracias por visitar mi sitio 😊");
+});</pre>
+
+      <div class="callout tip"><strong class="callout__tag">Desafío</strong> Cambiá los colores con el <a href="#/tool/degradados">Generador de degradados</a>, agregá una sección más y, cuando te guste, <a href="#/unit/publicar">publicalo</a> en internet.</div>
+    `,
+    quiz: [
+      { q: "¿Qué etiqueta semántica conviene para el menú de navegación?", opts: ["&lt;div&gt;", "&lt;nav&gt;", "&lt;menu-bar&gt;", "&lt;section&gt;"], a: 1, exp: "&lt;nav&gt; describe la navegación." },
+      { q: "Para que el menú se apile en celular se usa:", opts: ["display:none", "una media query con flex-direction:column", "position:fixed", "un &lt;table&gt;"], a: 1, exp: "Media query + flex-direction:column." },
+      { q: "El degradado del hero se logra con:", opts: ["color", "linear-gradient(...)", "border", "box-shadow"], a: 1, exp: "background: linear-gradient(...)." },
+    ],
+    cards: [
+      { q: "Estructura semántica típica", a: "header (nav) + main (sections) + footer." },
+      { q: "Variables CSS", a: ":root { --color: #...; } y luego var(--color)." },
+      { q: "Hacerlo interactivo", a: "JS: getElementById + addEventListener('click', ...)." },
+    ]
+  },
+
+  /* ===================================================================
+     UNIDAD 6 — PUBLICAR TU SITIO
+     =================================================================== */
+  {
+    id: "publicar",
+    glyph: "⬆",
+    icon: "tool",
+    title: "Publicar tu sitio",
+    desc: "Git y GitHub, y cómo subir tu web gratis con GitHub Pages, Vercel o Netlify. Herramientas útiles.",
+    tool: null,
+    html: `
+      <p class="lead">Ya tenés tu página: ahora hay que <strong>ponerla online</strong> para compartirla. Primero versionás el código con <strong>Git/GitHub</strong> y después lo publicás en un servicio <strong>gratuito</strong>.</p>
+
+      <h2>Git — control de versiones</h2>
+      <p><strong>Git</strong> guarda el historial de cambios de tu proyecto (podés volver atrás). <strong>GitHub</strong> es la nube donde subís ese repositorio. Flujo básico en la terminal:</p>
+      <pre>git init                 # inicializa el repositorio
+git add .                # prepara todos los archivos
+git commit -m "primer commit"   # guarda una versión
+git remote add origin URL_DEL_REPO   # conecta con GitHub
+git push -u origin main  # sube los cambios</pre>
+      <div class="callout tip"><strong class="callout__tag">.gitignore</strong> Un archivo donde listás lo que NO querés subir (por ejemplo <code>node_modules/</code> o archivos pesados).</div>
+
+      <h2>Crear el repositorio en GitHub</h2>
+      <ol>
+        <li>Entrá a <strong>github.com</strong> y creá una cuenta (gratis).</li>
+        <li><strong>New repository</strong> → ponele un nombre → <em>Create</em>.</li>
+        <li>Seguí los comandos que te muestra (los <code>git remote add</code> y <code>git push</code> de arriba).</li>
+      </ol>
+
+      <h2>Publicarlo gratis — 3 opciones</h2>
+      <div class="tbl-wrap">
+      <table class="tbl tbl--left">
+        <thead><tr><th>Servicio</th><th>Cómo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>GitHub Pages</strong></td><td>En tu repo: <em>Settings → Pages</em> → elegí la rama <code>main</code> → guardás. Tu sitio queda en <code>usuario.github.io/repo</code>. Ideal para sitios estáticos (HTML/CSS/JS).</td></tr>
+          <tr><td><strong>Vercel</strong></td><td>Entrá a <strong>vercel.com</strong>, <em>Add New → Project</em>, importá tu repo de GitHub y <em>Deploy</em>. Te da una URL <code>tusitio.vercel.app</code> y redeploya solo en cada push.</td></tr>
+          <tr><td><strong>Netlify</strong></td><td>La forma más rápida: <strong>app.netlify.com/drop</strong> y <em>arrastrás la carpeta</em> del sitio. También se puede conectar al repo de GitHub.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout"><strong class="callout__tag">¿Cuál elijo?</strong> Para empezar y solo arrastrar: <strong>Netlify Drop</strong>. Para que se actualice solo al pushear: <strong>Vercel</strong> o <strong>GitHub Pages</strong>.</div>
+
+      <h2>Herramientas útiles</h2>
+      <ul>
+        <li><strong>DevTools</strong> (tecla <code>F12</code> en el navegador): inspeccionar el HTML, probar CSS en vivo y ver errores de la consola.</li>
+        <li><strong>MDN Web Docs</strong> (developer.mozilla.org): la documentación de referencia de HTML, CSS y JS.</li>
+        <li><strong>Can I use</strong> (caniuse.com): ver qué navegadores soportan una función.</li>
+        <li><strong>Google Fonts</strong> (fonts.google.com) y <strong>Font Awesome</strong> (fontawesome.com): tipografías e íconos gratis.</li>
+        <li><strong>Validador del W3C</strong> (validator.w3.org): revisar que tu HTML esté bien escrito.</li>
+        <li><strong>Coolors / generadores de paletas</strong>: elegir combinaciones de colores.</li>
+      </ul>
+    `,
+    quiz: [
+      { q: "¿Para qué sirve Git?", opts: ["editar imágenes", "llevar el historial de versiones del código", "diseñar logos", "navegar internet"], a: 1, exp: "Control de versiones: guarda y permite volver atrás." },
+      { q: "El comando para subir los cambios a GitHub es:", opts: ["git pull", "git push", "git status", "git clone"], a: 1, exp: "git push envía tus commits al repositorio remoto." },
+      { q: "La forma más rápida de publicar arrastrando una carpeta es:", opts: ["GitHub Pages", "Netlify Drop", "XAMPP", "FTP manual"], a: 1, exp: "app.netlify.com/drop: arrastrás y listo." },
+      { q: "Para inspeccionar y depurar una página en el navegador se usan:", opts: ["las DevTools (F12)", "Photoshop", "Word", "la terminal"], a: 0, exp: "Las herramientas de desarrollo (F12)." },
+    ],
+    cards: [
+      { q: "Git vs GitHub", a: "Git: control de versiones local. GitHub: la nube donde subís el repositorio." },
+      { q: "Comandos básicos de Git", a: "git init · add . · commit -m \"...\" · remote add origin URL · push." },
+      { q: "GitHub Pages", a: "Settings → Pages → rama main. Publica sitios estáticos en usuario.github.io." },
+      { q: "Vercel / Netlify", a: "Vercel: importás el repo y se redeploya al pushear. Netlify Drop: arrastrás la carpeta." },
+      { q: "DevTools (F12)", a: "Inspeccionar HTML, probar CSS en vivo y ver errores de consola." },
+      { q: ".gitignore", a: "Lista de archivos/carpetas que NO se suben al repositorio." },
+    ]
   }
 
   ]

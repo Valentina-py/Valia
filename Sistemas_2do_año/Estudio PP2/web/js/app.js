@@ -50,7 +50,7 @@
     return `<svg class="ic ${cls || ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ""}</svg>`;
   }
-  const UNIT_TOOL_ICON = { editor: "tool" };
+  const UNIT_TOOL_ICON = { editor: "tool", degradados: "spiral" };
   // badge con el glifo matemático de la unidad
   function badge(glyph, big) { return `<span class="ubadge${big ? " ubadge--lg" : ""}">${glyph}</span>`; }
 
@@ -114,6 +114,7 @@
     });
     html += `<div class="nav__group-title">Herramientas</div>`;
     html += navItem("#/tool/editor", icon("tool"), "Editor en vivo", null);
+    html += navItem("#/tool/degradados", icon("spiral"), "Generador de degradados", null);
     html += `<div class="nav__group-title">Práctica</div>`;
     html += navItem("#/practica", icon("practice"), "Ejercicios (TP)", null);
     html += navItem("#/cards", icon("cards"), "Flashcards", null);
@@ -210,6 +211,7 @@
       <h2>Herramientas interactivas</h2>
       <div class="tool-grid">
         ${toolCard("#/tool/editor","tool","Editor en vivo","Escribí HTML, CSS y JavaScript y vé el resultado al instante.")}
+        ${toolCard("#/tool/degradados","spiral","Generador de degradados","Creá un degradado CSS y copiá el código listo para usar.")}
       </div>
 
       <h2>Para practicar</h2>
@@ -279,6 +281,7 @@
   function renderToolPage(id) {
     const titles = {
       editor: ["Editor en vivo", "Escribí HTML, CSS y JavaScript y mirá el resultado al instante en la vista previa."],
+      degradados: ["Generador de degradados", "Elegí dos colores y un ángulo, y copiá el código CSS del degradado."],
     };
     const t = titles[id];
     if (!t || !window.Tools[id]) return renderHome();
@@ -618,6 +621,7 @@
     PRACTICE.forEach(t => idx.push({ title: t.title, sub: "Práctica · ejercicios", href: `#/practica/${t.id}`, hay: (t.title + " " + t.desc).toLowerCase() }));
     GAMES.forEach(g => idx.push({ title: g.title, sub: "Juego", href: `#/games/${g.id}`, hay: (g.title + " " + g.desc).toLowerCase() }));
     [["Editor en vivo","Herramienta","#/tool/editor"],
+     ["Generador de degradados","Herramienta","#/tool/degradados"],
      ["Ejercicios de los TP","Práctica","#/practica"],
      ["Autoevaluación","Práctica","#/quiz"],
      ["Flashcards","Práctica","#/cards"],
