@@ -236,6 +236,15 @@ h2.section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; lett
 /* ---------- FOOTER ---------- */
 .footer { padding: 50px 0 40px; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: .9rem; }
 .footer .brand { justify-content: center; margin-bottom: 14px; font-size: 1.05rem; }
+.footer .footer-grid { display:grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap:34px; text-align:left; max-width:980px; margin:0 auto 34px; }
+.footer .footer-grid .brand { justify-content:flex-start; margin-bottom:12px; }
+.footer .foot-tag { font-size:.86rem; line-height:1.65; opacity:.85; max-width:270px; }
+.footer .footer-col h4 { color:var(--text); font-size:.78rem; text-transform:uppercase; letter-spacing:.07em; margin-bottom:14px; }
+.footer .footer-col a { display:block; color:var(--muted); text-decoration:none; padding:5px 0; font-size:.9rem; transition:color .15s; }
+.footer .footer-col a:hover { color:var(--accent); }
+.footer .footer-bottom { border-top:1px solid var(--border); padding-top:22px; font-size:.82rem; opacity:.8; }
+@media (max-width:760px){ .footer .footer-grid { grid-template-columns:1fr 1fr; gap:26px; } .footer .foot-tag{ max-width:none; } }
+@media (max-width:440px){ .footer .footer-grid { grid-template-columns:1fr; } }
 
 /* ---------- MODAL LOGIN ---------- */
 .modal-overlay {
