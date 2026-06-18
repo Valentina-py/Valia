@@ -46,7 +46,7 @@
     return `<svg class="ic ${cls || ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ""}</svg>`;
   }
-  const UNIT_TOOL_ICON = { logica: "truth", conjuntos: "venn", reales: "ruler", complejos: "spiral", radicales: "root", calc: "calc" };
+  const UNIT_TOOL_ICON = { medidas: "target", frecuencias: "ruler" };
   // badge con el glifo matemático de la unidad
   function badge(glyph, big) { return `<span class="ubadge${big ? " ubadge--lg" : ""}">${glyph}</span>`; }
 
@@ -109,12 +109,8 @@
       html += navItem(`#/unit/${u.id}`, badge(u.glyph), `${i + 1}. ${u.title}`, u.id);
     });
     html += `<div class="nav__group-title">Herramientas</div>`;
-    html += navItem("#/tool/logica", icon("truth"), "Tablas de verdad", null);
-    html += navItem("#/tool/conjuntos", icon("venn"), "Diagramas de Venn", null);
-    html += navItem("#/tool/reales", icon("ruler"), "Valor absoluto", null);
-    html += navItem("#/tool/complejos", icon("spiral"), "Calculadora complejos", null);
-    html += navItem("#/tool/radicales", icon("root"), "Suma de radicales", null);
-    html += navItem("#/tool/calc", icon("calc"), "Calculadora", null);
+    html += navItem("#/tool/medidas", icon("target"), "Calculadora de medidas", null);
+    html += navItem("#/tool/frecuencias", icon("ruler"), "Tabla de frecuencias", null);
     html += `<div class="nav__group-title">Práctica</div>`;
     html += navItem("#/practica", icon("practice"), "Ejercicios (TP)", null);
     html += navItem("#/cards", icon("cards"), "Flashcards", null);
@@ -210,12 +206,8 @@
 
       <h2>Herramientas interactivas</h2>
       <div class="tool-grid">
-        ${toolCard("#/tool/logica","truth","Tablas de verdad","Generá la tabla de cualquier proposición y clasificá tautologías.")}
-        ${toolCard("#/tool/conjuntos","venn","Diagramas de Venn","Visualizá uniones, intersecciones y complementos.")}
-        ${toolCard("#/tool/reales","ruler","Valor absoluto","Resolvé ecuaciones e inecuaciones con módulo.")}
-        ${toolCard("#/tool/complejos","spiral","Calculadora de complejos","Operá z, w, módulo, conjugado y potencias de i.")}
-        ${toolCard("#/tool/radicales","root","Suma de radicales","Simplificá y sumá raíces cuadradas semejantes.")}
-        ${toolCard("#/tool/calc","calc","Calculadora","Reales y complejos: potencias, raíces, i, módulo y conjugado.")}
+        ${toolCard("#/tool/medidas","target","Calculadora de medidas","Pegá tus datos y obtené media, mediana, moda, rango, varianza, desvío y CV.")}
+        ${toolCard("#/tool/frecuencias","ruler","Tabla de frecuencias","Generá la tabla con fi, hi, frecuencias acumuladas y porcentajes.")}
       </div>
 
       <h2>Para practicar</h2>
@@ -284,12 +276,8 @@
 
   function renderToolPage(id) {
     const titles = {
-      logica: ["Tablas de verdad", "Escribí una proposición y obtené su tabla de verdad completa con su clasificación."],
-      conjuntos: ["Diagramas de Venn", "Operá conjuntos y visualizá el resultado en diagramas de Venn."],
-      reales: ["Valor absoluto", "Resolvé ecuaciones e inecuaciones con módulo y vé el intervalo en la recta."],
-      complejos: ["Calculadora de complejos", "Suma, resta, producto, cociente, módulo, conjugado y potencias de i."],
-      radicales: ["Suma de radicales", "Simplificá y sumá raíces cuadradas semejantes con el paso a paso."],
-      calc: ["Calculadora", "Operá números reales y complejos: potencias, raíces, i, módulo, conjugado y fracciones."],
+      medidas: ["Calculadora de medidas", "Pegá tus datos y obtené media, mediana, moda, rango, varianza, desvío estándar y coeficiente de variación."],
+      frecuencias: ["Tabla de frecuencias", "Generá la tabla con fi, hi, frecuencias acumuladas y porcentajes a partir de tus datos."],
     };
     const t = titles[id];
     if (!t || !window.Tools[id]) return renderHome();
@@ -628,12 +616,8 @@
     });
     PRACTICE.forEach(t => idx.push({ title: t.title, sub: "Práctica · ejercicios", href: `#/practica/${t.id}`, hay: (t.title + " " + t.desc).toLowerCase() }));
     GAMES.forEach(g => idx.push({ title: g.title, sub: "Juego", href: `#/games/${g.id}`, hay: (g.title + " " + g.desc).toLowerCase() }));
-    [["Tablas de verdad","Herramienta","#/tool/logica"],
-     ["Diagramas de Venn","Herramienta","#/tool/conjuntos"],
-     ["Valor absoluto","Herramienta","#/tool/reales"],
-     ["Calculadora de complejos","Herramienta","#/tool/complejos"],
-     ["Suma de radicales","Herramienta","#/tool/radicales"],
-     ["Calculadora","Herramienta","#/tool/calc"],
+    [["Calculadora de medidas","Herramienta","#/tool/medidas"],
+     ["Tabla de frecuencias","Herramienta","#/tool/frecuencias"],
      ["Ejercicios de los TP","Práctica","#/practica"],
      ["Autoevaluación","Práctica","#/quiz"],
      ["Flashcards","Práctica","#/cards"],

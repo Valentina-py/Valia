@@ -2,12 +2,13 @@
    - HTML / CSS / JS: network-first (siempre lo último; sin conexión → copia en caché).
    - Íconos / manifest: cache-first (carga instantánea).
    Al cambiar el contenido, subí el número de versión (CACHE) para forzar el refresco. */
-const CACHE = "estad-v1";
+const CACHE = "estad-v2";
 const ASSETS = [
   "./",
   "./index.html",
   "./css/styles.css",
   "./js/data.js",
+  "./js/tools.js",
   "./js/app.js",
   "./site.webmanifest",
   "./favicon.svg"

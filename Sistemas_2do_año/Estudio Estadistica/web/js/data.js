@@ -108,7 +108,7 @@ window.APP_DATA = {
     icon: "ruler",
     title: "Resumen y Presentación de Datos",
     desc: "Combinación ordenada, tablas de frecuencias (fi, hi, acumuladas), intervalos de clase y gráficos.",
-    tool: null,
+    tool: "frecuencias",
     html: `
       <p class="lead">Una vez recolectados, los datos se <strong>organizan</strong> y <strong>resumen</strong> para poder interpretarlos. Hay tres formas de presentarlos: <strong>texto</strong>, <strong>tablas</strong> y <strong>gráficos</strong>.</p>
 
@@ -201,7 +201,7 @@ window.APP_DATA = {
     icon: "target",
     title: "Medidas de Posición",
     desc: "Media, mediana y moda; cuartiles y percentiles, para datos agrupados y no agrupados.",
-    tool: null,
+    tool: "medidas",
     html: `
       <p class="lead">Las <strong>medidas de posición central</strong> resumen el conjunto en un valor «representativo». Las principales son la <strong>media</strong>, la <strong>mediana</strong> y la <strong>moda</strong>.</p>
 
@@ -284,7 +284,7 @@ window.APP_DATA = {
     icon: "ruler",
     title: "Medidas de Dispersión",
     desc: "Rango, varianza, desvío estándar y coeficiente de variación: cuánto se alejan los datos del promedio.",
-    tool: null,
+    tool: "medidas",
     html: `
       <p class="lead">Las <strong>medidas de dispersión</strong> indican cuán <em>concentrados o dispersos</em> están los datos alrededor de la media. Dos conjuntos pueden tener la misma media y dispersiones muy distintas.</p>
 
