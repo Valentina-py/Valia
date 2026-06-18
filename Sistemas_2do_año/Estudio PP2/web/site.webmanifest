@@ -1,0 +1,19 @@
+{
+  "name": "Estudio PP2",
+  "short_name": "PP2",
+  "description": "Plataforma interactiva de Prácticas Profesionalizantes II: HTML, CSS, JavaScript y desarrollo web.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07060C",
+  "theme_color": "#8B5CF6",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
