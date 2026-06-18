@@ -205,6 +205,34 @@ h2.section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; lett
 .apunte-item .dl { color: var(--accent); font-weight: 600; font-size: .85rem; }
 .empty { text-align: center; color: var(--muted); padding: 30px; font-size: .92rem; }
 
+/* ---------- Archivo seleccionado (chip) ---------- */
+.file-chip { display: none; align-items: center; gap: 12px; margin-top: 14px; padding: 12px 14px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; }
+.file-chip.show { display: flex; }
+.file-chip .fc-ico { width: 38px; height: 38px; border-radius: 9px; background: var(--surface); border: 1px solid var(--border); display: grid; place-items: center; color: var(--accent); flex-shrink: 0; }
+.file-chip .fc-meta { flex: 1; min-width: 0; }
+.file-chip .fc-meta b { display: block; font-size: .9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.file-chip .fc-meta span { font-size: .78rem; color: var(--muted); }
+.file-chip .fc-x { background: transparent; border: 0; color: var(--muted); cursor: pointer; font-size: 1.3rem; line-height: 1; padding: 2px 9px; border-radius: 8px; }
+.file-chip .fc-x:hover { color: var(--accent-2); background: var(--surface); }
+
+/* ---------- Panel de usuario (dashboard) ---------- */
+#miPanel { padding-top: 34px; }
+.dash { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 28px; box-shadow: var(--shadow); }
+.dash-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
+.dash-user { display: flex; align-items: center; gap: 16px; }
+.dash-av { width: 58px; height: 58px; border-radius: 50%; background: var(--grad); display: grid; place-items: center; color: var(--accent-ink); font-weight: 800; font-size: 1.4rem; flex-shrink: 0; }
+.dash-user h2 { font-size: 1.4rem; margin: 0; }
+.dash-user .muted { color: var(--muted); font-size: .9rem; margin-top: 2px; }
+.dash-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+.dash-stat { background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px; padding: 18px; text-align: center; }
+.dash-stat b { display: block; font-size: 1.8rem; font-weight: 800; background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.dash-stat span { font-size: .82rem; color: var(--muted); }
+.dash-section h3 { font-size: 1.1rem; margin-bottom: 14px; }
+.apunte-item .actions { display: flex; align-items: center; gap: 4px; }
+.apunte-item .del { background: transparent; border: 0; color: var(--muted); cursor: pointer; font-weight: 600; font-size: .85rem; padding: 4px 9px; border-radius: 8px; }
+.apunte-item .del:hover { color: var(--accent-2); background: var(--surface); }
+@media (max-width: 560px) { .dash-stats { grid-template-columns: 1fr; } }
+
 /* ---------- ANUNCIOS (no invasivos) ---------- */
 .ad-slot {
   background: var(--surface-2); border: 1px dashed var(--border); border-radius: 14px;

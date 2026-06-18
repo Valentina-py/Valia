@@ -108,6 +108,16 @@
   });
   $("#statMaterias").textContent = totalMaterias;
 
+  // Opción "Otra materia / institución" + campo de texto libre
+  const optOtra = document.createElement("option");
+  optOtra.value = "__otra__"; optOtra.textContent = "Otra materia / institución…";
+  sel.appendChild(optOtra);
+  const otraField = $("#otraField"), apOtra = $("#apMateriaOtra");
+  sel.addEventListener("change", () => {
+    otraField.hidden = sel.value !== "__otra__";
+    if (sel.value === "__otra__") apOtra.focus();
+  });
+
   /* ---------- Donativos ---------- */
   const payRow = $("#payRow");
   let anyPay = false;
@@ -180,11 +190,18 @@
       $("#userAv").textContent = (name[0] || "U").toUpperCase();
       $("#uploadForm").hidden = false;
       $("#uploadLocked").hidden = true;
+      // Panel de usuario
+      $("#miPanel").hidden = false;
+      $("#dashAv").textContent = (name[0] || "U").toUpperCase();
+      $("#dashHola").textContent = "Hola, " + name;
+      $("#dashEmail").textContent = user.email || "";
+      loadMisApuntes();
     } else {
       chip.classList.remove("show");
       loginBtn.style.display = "";
       $("#uploadForm").hidden = true;
       $("#uploadLocked").hidden = false;
+      $("#miPanel").hidden = true;
     }
   }
 
@@ -274,22 +291,35 @@
 
   /* ---------- Subir apuntes ---------- */
   const dz = $("#dropzone"), fileInput = $("#apFile"), dropText = $("#dropText");
-  fileInput.addEventListener("change", () => { if (fileInput.files[0]) dropText.textContent = fileInput.files[0].name; });
+  const fileChip = $("#fileChip"), fcName = $("#fcName"), fcSize = $("#fcSize"), fcIco = $("#fcIco");
+  function showFile(file) {
+    if (!file) { fileChip.classList.remove("show"); dropText.textContent = "Arrastra tu archivo o haz clic para elegirlo"; return; }
+    fcName.textContent = file.name;
+    fcSize.textContent = fmtSize(file.size);
+    fcIco.innerHTML = icon(fileIconName(file.name), 20);
+    fileChip.classList.add("show");
+    dropText.textContent = "Archivo listo · tocá para cambiarlo";
+  }
+  fileInput.addEventListener("change", () => showFile(fileInput.files[0]));
+  $("#fcRemove").addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); fileInput.value = ""; showFile(null); });
   ["dragover", "dragenter"].forEach((ev) => dz.addEventListener(ev, (e) => { e.preventDefault(); dz.classList.add("drag"); }));
   ["dragleave", "drop"].forEach((ev) => dz.addEventListener(ev, () => dz.classList.remove("drag")));
-  dz.addEventListener("drop", (e) => { e.preventDefault(); if (e.dataTransfer.files[0]) { fileInput.files = e.dataTransfer.files; dropText.textContent = e.dataTransfer.files[0].name; } });
+  dz.addEventListener("drop", (e) => { e.preventDefault(); if (e.dataTransfer.files[0]) { fileInput.files = e.dataTransfer.files; showFile(e.dataTransfer.files[0]); } });
 
-  $("#uploadBtn").addEventListener("click", async () => {
+  const uploadBtn = $("#uploadBtn");
+  uploadBtn.addEventListener("click", async () => {
     const titulo = $("#apTitulo").value.trim();
-    const materia = sel.value;
+    const materia = sel.value === "__otra__" ? apOtra.value.trim() : sel.value;
     const file = fileInput.files[0];
     const msg = $("#uploadMsg");
-    if (!titulo || !file) { msg.className = "msg err"; msg.textContent = "Pon un título y elige un archivo."; return; }
-    msg.className = "msg"; msg.textContent = "Subiendo…";
+    if (!titulo || !file) { msg.className = "msg err"; msg.textContent = "Poné un título y elegí un archivo."; return; }
+    if (sel.value === "__otra__" && !materia) { msg.className = "msg err"; msg.textContent = "Escribí el nombre de la materia o institución."; return; }
+    const lock = (on) => { uploadBtn.disabled = on; uploadBtn.textContent = on ? "Subiendo…" : "Subir apunte"; };
+    msg.className = "msg"; msg.textContent = "Subiendo…"; lock(true);
     if (DEMO) {
       demoStore.addApunte({ titulo, materia, name: file.name, size: file.size, url: "#" });
       msg.className = "msg ok"; msg.textContent = "Apunte guardado (modo demo).";
-      resetUpload(); loadApuntes(); return;
+      lock(false); resetUpload(); loadApuntes(); loadMisApuntes(); return;
     }
     try {
       const { data: u } = await sb.auth.getUser();
@@ -300,11 +330,15 @@
       const { data: pub } = sb.storage.from(C.supabase.bucket).getPublicUrl(path);
       const ins = await sb.from("apuntes").insert({ titulo, materia, file_path: path, url: pub.publicUrl, user_id: uid });
       if (ins.error) throw ins.error;
-      msg.className = "msg ok"; msg.textContent = "Apunte subido.";
-      resetUpload(); loadApuntes();
+      msg.className = "msg ok"; msg.textContent = "¡Apunte subido!";
+      resetUpload(); loadApuntes(); loadMisApuntes();
     } catch (err) { msg.className = "msg err"; msg.textContent = "Error: " + err.message; }
+    finally { lock(false); }
   });
-  function resetUpload() { $("#apTitulo").value = ""; fileInput.value = ""; dropText.textContent = "Arrastra tu archivo o haz clic para elegirlo"; }
+  function resetUpload() {
+    $("#apTitulo").value = ""; fileInput.value = ""; showFile(null);
+    sel.value = sel.options[0] ? sel.options[0].value : ""; otraField.hidden = true; apOtra.value = "";
+  }
 
   /* ---------- Listar apuntes ---------- */
   const fileIconName = (name = "") => {
@@ -340,6 +374,49 @@
       </div>`).join("");
   }
   function escapeHtml(s = "") { return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+
+  /* ---------- Mi panel: apuntes propios + estadísticas ---------- */
+  $("#dashLogout").addEventListener("click", () => $("#logoutBtn").click());
+
+  async function loadMisApuntes() {
+    const wrap = $("#misApuntes"); if (!wrap) return;
+    let items = [];
+    if (DEMO) {
+      items = demoStore.apuntes().map((a, i) => ({ ...a, _demoIndex: i }));
+    } else if (currentUser) {
+      const { data, error } = await sb.from("apuntes").select("*").eq("user_id", currentUser.id).order("created_at", { ascending: false });
+      if (!error && data) items = data.map((d) => ({ id: d.id, titulo: d.titulo, materia: d.materia, file_path: d.file_path, name: (d.file_path || "").split("/").pop(), url: d.url }));
+    }
+    const sA = $("#statApuntes"), sM = $("#statMateriasUser"), sU = $("#statUltimo");
+    if (sA) sA.textContent = items.length;
+    if (sM) sM.textContent = new Set(items.map((i) => i.materia || "General")).size;
+    if (sU) { const u = items[0]; sU.textContent = u ? (u.titulo.length > 13 ? u.titulo.slice(0, 13) + "…" : u.titulo) : "—"; }
+    if (!items.length) { wrap.innerHTML = `<div class="empty">Todavía no subiste apuntes. Usá el formulario para subir el primero.</div>`; return; }
+    wrap.innerHTML = items.map((a) => `
+      <div class="apunte-item">
+        <div class="fico">${icon(fileIconName(a.name), 20)}</div>
+        <div class="meta"><b>${escapeHtml(a.titulo)}</b><span>${escapeHtml(a.materia || "General")}</span></div>
+        <div class="actions">
+          <a class="dl" href="${a.url || "#"}" ${a.url && a.url !== "#" ? 'target="_blank" rel="noopener"' : ""}>Abrir</a>
+          <button class="del" data-id="${a.id || ""}" data-path="${escapeHtml(a.file_path || "")}" data-demo="${a._demoIndex ?? ""}">Borrar</button>
+        </div>
+      </div>`).join("");
+    wrap.querySelectorAll(".del").forEach((b) => b.addEventListener("click", () => borrarApunte(b.dataset)));
+  }
+
+  async function borrarApunte(ds) {
+    if (!confirm("¿Borrar este apunte? No se puede deshacer.")) return;
+    if (DEMO) {
+      const l = demoStore.apuntes(); l.splice(Number(ds.demo), 1);
+      localStorage.setItem("hub-demo-apuntes", JSON.stringify(l));
+      loadMisApuntes(); loadApuntes(); return;
+    }
+    try {
+      if (ds.path) await sb.storage.from(C.supabase.bucket).remove([ds.path]);
+      if (ds.id) await sb.from("apuntes").delete().eq("id", ds.id);
+      loadMisApuntes(); loadApuntes();
+    } catch (err) { alert("No se pudo borrar: " + err.message); }
+  }
 
   /* ---------- Init ---------- */
   observeReveals();

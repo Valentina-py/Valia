@@ -95,6 +95,36 @@
     </div>
   </div>
 
+  <!-- ===================== MI PANEL (usuario) ===================== -->
+  <section id="miPanel" hidden>
+    <div class="container">
+      <span class="eyebrow reveal">Tu espacio</span>
+      <h2 class="section-title reveal">Mi panel</h2>
+      <p class="section-sub reveal">Tu perfil, tus estadísticas y todos los apuntes que subiste, en un solo lugar.</p>
+      <div class="dash reveal" style="margin-top:32px;">
+        <div class="dash-head">
+          <div class="dash-user">
+            <span class="dash-av" id="dashAv">U</span>
+            <div>
+              <h2 id="dashHola">Hola</h2>
+              <p class="muted" id="dashEmail"></p>
+            </div>
+          </div>
+          <button class="btn btn-ghost" id="dashLogout">Cerrar sesión</button>
+        </div>
+        <div class="dash-stats">
+          <div class="dash-stat"><b id="statApuntes">0</b><span>Apuntes subidos</span></div>
+          <div class="dash-stat"><b id="statMateriasUser">0</b><span>Materias distintas</span></div>
+          <div class="dash-stat"><b id="statUltimo">—</b><span>Último apunte</span></div>
+        </div>
+        <div class="dash-section">
+          <h3>Mis apuntes</h3>
+          <div class="apunte-list" id="misApuntes"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== APUNTES ===================== -->
   <section id="apuntes">
     <div class="container">
@@ -110,8 +140,12 @@
 
           <div id="uploadForm">
             <div class="field">
-              <label>Materia</label>
+              <label>Materia o institución</label>
               <select id="apMateria"></select>
+            </div>
+            <div class="field otra-field" id="otraField" hidden>
+              <label>Nombre de la materia / institución</label>
+              <input type="text" id="apMateriaOtra" placeholder="Ej: Facultad de Derecho · Civil I" />
             </div>
             <div class="field">
               <label>Título</label>
@@ -122,6 +156,11 @@
               <div class="big" data-icon="upload" data-size="30"></div>
               <div id="dropText">Arrastra tu archivo o haz clic para elegirlo</div>
             </label>
+            <div class="file-chip" id="fileChip">
+              <div class="fc-ico" id="fcIco"></div>
+              <div class="fc-meta"><b id="fcName"></b><span id="fcSize"></span></div>
+              <button type="button" class="fc-x" id="fcRemove" title="Quitar archivo">&times;</button>
+            </div>
             <button class="btn btn-primary" id="uploadBtn" style="width:100%; justify-content:center; margin-top:16px;">Subir apunte</button>
             <div class="msg" id="uploadMsg"></div>
           </div>
