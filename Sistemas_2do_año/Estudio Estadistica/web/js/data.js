@@ -96,6 +96,10 @@ window.APP_DATA = {
       { q: "Población vs muestra", a: "Población: todo el conjunto de interés. Muestra: un subconjunto." },
       { q: "Variable cualitativa vs cuantitativa", a: "Cualitativa: categorías (nominal/ordinal). Cuantitativa: números (discreta/continua)." },
       { q: "Parámetro vs estadístico", a: "Parámetro: valor de la población. Estadístico: valor de la muestra." },
+      { q: "¿Qué es la unidad de observación?", a: "Cada elemento de la población o muestra que se estudia." },
+      { q: "Nominal vs ordinal", a: "Nominal: categorías sin orden. Ordinal: categorías con un orden." },
+      { q: "Discreta vs continua", a: "Discreta: valores aislados (se cuentan). Continua: cualquier valor de un intervalo (se mide)." },
+      { q: "¿Qué es un indicador?", a: "El medio con el que se obtienen los datos (encuesta, medición, etc.)." },
     ]
   },
 
@@ -189,6 +193,10 @@ window.APP_DATA = {
       { q: "Regla de Sturges", a: "\\(k=1+3{,}32\\log(n)\\): nº de intervalos." },
       { q: "Histograma vs bastones", a: "Histograma: continua (barras contiguas). Bastones: discreta." },
       { q: "Ojiva", a: "Gráfico de las frecuencias acumuladas (creciente o decreciente)." },
+      { q: "Tres formas de presentar datos", a: "Texto, tablas y gráficos." },
+      { q: "Amplitud de un intervalo", a: "\\(a=\\dfrac{x_{\\max}-x_{\\min}}{k}\\)." },
+      { q: "Polígono de frecuencias", a: "Une los puntos medios (marcas de clase) de las cimas del histograma." },
+      { q: "Gráfico para cualitativa nominal", a: "Barras separadas, torta (con %) o Pareto." },
     ]
   },
 
@@ -272,6 +280,10 @@ window.APP_DATA = {
       { q: "Mediana agrupada", a: "\\(Me=L_i+\\dfrac{\\frac{n}{2}-F_{i-1}}{f_i}\\,a\\)." },
       { q: "¿Qué es la moda?", a: "El valor más frecuente. Sirve también para cualitativas." },
       { q: "Cuartiles y percentiles", a: "\\(Q_1\\):25 %, \\(Q_2=Me\\):50 %, \\(Q_3\\):75 %. \\(P_{50}=Me\\)." },
+      { q: "¿Cuándo conviene la mediana?", a: "Cuando hay valores atípicos que distorsionan la media." },
+      { q: "Posición de la mediana (n impar)", a: "El valor de la posición \\(\\dfrac{n+1}{2}\\)." },
+      { q: "Deciles", a: "Dividen el conjunto ordenado en 10 partes iguales (\\(D_1,\\dots,D_9\\))." },
+      { q: "Media con frecuencias", a: "\\(\\bar{x}=\\dfrac{\\sum x_i f_i}{n}\\)." },
     ]
   },
 
@@ -339,6 +351,9 @@ window.APP_DATA = {
       { q: "Desvío estándar", a: "\\(s=\\sqrt{s^{2}}\\); en las unidades originales." },
       { q: "Coeficiente de variación", a: "\\(CV=\\dfrac{s}{\\bar{x}}\\times100\\,\\%\\); dispersión relativa." },
       { q: "¿Por qué el desvío y no la varianza?", a: "La varianza está en unidades al cuadrado; el desvío vuelve a las originales." },
+      { q: "¿Qué miden las medidas de dispersión?", a: "Cuán concentrados o dispersos están los datos respecto de la media." },
+      { q: "Desvío chico vs grande", a: "Chico: datos homogéneos (cerca de la media). Grande: heterogéneos." },
+      { q: "Varianza: población vs muestra", a: "Población: \\(\\div N\\). Muestra: \\(\\div (n-1)\\)." },
     ]
   }
 

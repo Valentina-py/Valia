@@ -6,7 +6,11 @@
   const DATA = window.APP_DATA;
   const UNITS = DATA.units;
   const PRACTICE = DATA.practica || [];
-  const GAMES = [];
+  const GAMES = [
+    { id: "clasificar", icon: "target", title: "Clasificá la variable", desc: "Decidí si cada variable es cualitativa (nominal/ordinal) o cuantitativa (discreta/continua)." },
+    { id: "medida", icon: "calc", title: "Adiviná la medida", desc: "Calculá la media, mediana, moda o rango de cada conjunto de datos." },
+    { id: "vof", icon: "timer", title: "Verdadero o Falso", desc: "Decidí si cada afirmación sobre estadística es verdadera o falsa." },
+  ];
   const gameById = id => GAMES.find(g => g.id === id);
   const $ = sel => document.querySelector(sel);
 
