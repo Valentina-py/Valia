@@ -24,10 +24,9 @@
   $$("[data-icon]").forEach((el) => { el.innerHTML = icon(el.dataset.icon, +el.dataset.size || 24); });
 
   /* ---------- Marca ---------- */
+  $$(".logo").forEach((el) => { el.innerHTML = '<svg viewBox="0 0 80 80" width="62%" height="62%" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M15 42 L33 58 L66 20"/></svg>'; });
   if (C.marca) {
-    const ini = (C.marca.nombre || "V").trim()[0].toUpperCase();
     $("#brandName").textContent = C.marca.nombre;
-    $("#brandLogo").textContent = ini;
   }
 
   /* ---------- Tema ---------- */

@@ -38,6 +38,15 @@ window.HUB_CONFIG = {
     adsenseClient: "ca-pub-2566809183716381",   // ej: ca-pub-1234567890123456
   },
 
+  /* --- Contacto (formulario) ----------------------------------------
+     Crea un formulario GRATIS en https://formspree.io, copia tu
+     "endpoint" (se ve como https://formspree.io/f/XXXXXXXX) y pégalo
+     en "formspree". Mientras esté vacío, el botón abre tu correo.     */
+  contacto: {
+    formspree: "",                          // ej: https://formspree.io/f/xxxxxxxx
+    email: "nvalentinabaudino@gmail.com",
+  },
+
   /* --- Materias (tus webs ya creadas) -------------------------------
      "ruta" es relativa a ESTA carpeta (Clases). Los espacios van
      codificados como %20. icono = emoji o símbolo.                    */

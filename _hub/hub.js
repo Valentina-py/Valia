@@ -40,11 +40,11 @@
     `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[name] || P.book}</svg>`;
 
   /* ---------- Marca ---------- */
+  const LOGO_MARK = '<svg viewBox="0 0 80 80" width="62%" height="62%" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M15 42 L33 58 L66 20"/></svg>';
+  $$(".logo").forEach((el) => { el.innerHTML = LOGO_MARK; });
   if (C.marca) {
-    const ini = (C.marca.nombre || "A").trim()[0].toUpperCase();
     $("#brandName").textContent = C.marca.nombre;
     $("#footName").textContent = C.marca.nombre;
-    $("#brandLogo").textContent = ini;
     document.title = `${C.marca.nombre} · Plataforma de estudio`;
     if (C.marca.lema) $("#heroTagline").textContent = C.marca.lema;
   }
@@ -302,6 +302,31 @@
       </div>`).join("");
   }
   function escapeHtml(s = "") { return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+
+  /* ---------- Contacto (Formspree / mailto) ---------- */
+  const cForm = $("#contactForm");
+  if (cForm) {
+    cForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = $("#cName").value.trim(), email = $("#cEmail").value.trim(), mensaje = $("#cMsg").value.trim();
+      const st = $("#cStatus");
+      if (!name || !email || !mensaje) { st.className = "msg err"; st.textContent = "Completá todos los campos."; return; }
+      const cfg = C.contacto || {};
+      if (!cfg.formspree) {
+        const to = cfg.email || "nvalentinabaudino@gmail.com";
+        location.href = `mailto:${to}?subject=${encodeURIComponent("Contacto Valía · " + name)}&body=${encodeURIComponent(mensaje + "\n\nDe: " + name + " (" + email + ")")}`;
+        return;
+      }
+      const btn = $("#cSend"); btn.disabled = true;
+      st.className = "msg"; st.textContent = "Enviando…";
+      try {
+        const r = await fetch(cfg.formspree, { method: "POST", headers: { "Accept": "application/json" }, body: JSON.stringify({ nombre: name, email, mensaje }) });
+        if (r.ok) { st.className = "msg ok"; st.textContent = "¡Mensaje enviado! Gracias, te respondemos pronto."; $("#cName").value = ""; $("#cEmail").value = ""; $("#cMsg").value = ""; }
+        else { st.className = "msg err"; st.textContent = "No se pudo enviar. Intentá de nuevo más tarde."; }
+      } catch (_) { st.className = "msg err"; st.textContent = "No se pudo enviar. Revisá tu conexión."; }
+      finally { btn.disabled = false; }
+    });
+  }
 
   /* ---------- Init ---------- */
   observeReveals();

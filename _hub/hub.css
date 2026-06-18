@@ -178,11 +178,12 @@ h2.section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; lett
 .panel .hint { color: var(--muted); font-size: .92rem; margin-bottom: 20px; }
 .field { margin-bottom: 14px; }
 .field label { display: block; font-size: .85rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
-.field input, .field select {
+.field input, .field select, .field textarea {
   width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border);
   background: var(--surface-2); color: var(--text); font-family: inherit; font-size: .95rem; transition: .2s;
 }
-.field input:focus, .field select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--glow); }
+.field textarea { resize: vertical; min-height: 96px; line-height: 1.5; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--glow); }
 .dropzone {
   display: block; margin-top: 4px;
   border: 2px dashed var(--border); border-radius: 14px; padding: 28px; text-align: center;
