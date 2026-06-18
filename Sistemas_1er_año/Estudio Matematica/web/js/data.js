@@ -892,6 +892,116 @@ window.APP_DATA = {
   },
 
   /* ===================================================================
+     UNIDAD — ECUACIONES E INECUACIONES
+     =================================================================== */
+  {
+    id: "ecuaciones",
+    glyph: "=",
+    icon: "reals",
+    title: "Ecuaciones e Inecuaciones",
+    desc: "Ecuaciones de 1.º y 2.º grado, sistemas lineales e inecuaciones, con su conjunto solución.",
+    html: `
+      <p class="lead">Una <strong>ecuación</strong> es una igualdad que solo se cumple para ciertos valores de la incógnita. <strong>Resolverla</strong> es hallar todos esos valores (su <em>conjunto solución</em>).</p>
+
+      <div class="callout def">
+        <strong class="callout__tag">Ecuaciones equivalentes</strong>
+        Tienen la misma solución. Se obtienen <strong>sumando o restando</strong> lo mismo a ambos miembros, o <strong>multiplicando/dividiendo</strong> ambos por un número distinto de cero.
+      </div>
+
+      <h2>Ecuación de primer grado (lineal)</h2>
+      <p>Tiene la forma \\(ax+b=0\\) con \\(a\\neq0\\). Se despeja la incógnita:</p>
+      <div class="formula-box">$$ ax+b=0 \\;\\Rightarrow\\; x=-\\dfrac{b}{a} $$</div>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\(3x-12=0 \\Rightarrow 3x=12 \\Rightarrow x=4\\). Solución: \\(\\{4\\}\\).
+      </div>
+
+      <h2>Ecuación de segundo grado (cuadrática)</h2>
+      <p>Tiene la forma \\(ax^{2}+bx+c=0\\) con \\(a\\neq0\\). Se resuelve con la <strong>fórmula resolvente</strong>:</p>
+      <div class="formula-box">$$ x=\\dfrac{-b\\pm\\sqrt{b^{2}-4ac}}{2a} $$</div>
+      <p>El <strong>discriminante</strong> \\(\\Delta=b^{2}-4ac\\) indica cuántas soluciones reales hay:</p>
+      <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Discriminante</th><th>Soluciones reales</th></tr></thead>
+        <tbody>
+          <tr><td>\\(\\Delta>0\\)</td><td>dos distintas</td></tr>
+          <tr><td>\\(\\Delta=0\\)</td><td>una (doble)</td></tr>
+          <tr><td>\\(\\Delta<0\\)</td><td>ninguna real (dos complejas conjugadas)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\(x^{2}-5x+6=0\\): \\(\\Delta=25-24=1\\). Entonces \\(x=\\dfrac{5\\pm1}{2}\\Rightarrow x_{1}=3,\\ x_{2}=2\\).
+      </div>
+      <div class="callout">
+        <strong class="callout__tag">Casos incompletos</strong>
+        Si \\(c=0\\): \\(ax^{2}+bx=0\\Rightarrow x(ax+b)=0\\) (factor común). Si \\(b=0\\): \\(ax^{2}+c=0\\Rightarrow x=\\pm\\sqrt{-c/a}\\).
+      </div>
+      <div class="callout tip">
+        <strong class="callout__tag">Suma y producto (Vieta)</strong>
+        Si \\(x_{1},x_{2}\\) son las raíces: \\(x_{1}+x_{2}=-\\dfrac{b}{a}\\) y \\(x_{1}\\cdot x_{2}=\\dfrac{c}{a}\\).
+      </div>
+
+      <h2>Sistemas de ecuaciones lineales (2×2)</h2>
+      <p>Buscan los valores que satisfacen <strong>dos</strong> ecuaciones a la vez. Métodos:</p>
+      <ul>
+        <li><strong>Sustitución</strong>: se despeja una incógnita en una ecuación y se reemplaza en la otra.</li>
+        <li><strong>Igualación</strong>: se despeja la misma incógnita en ambas y se igualan.</li>
+        <li><strong>Reducción (suma/resta)</strong>: se combinan las ecuaciones para eliminar una incógnita.</li>
+      </ul>
+      <p>Según las rectas que representan, el sistema es <strong>compatible determinado</strong> (una solución; rectas que se cortan), <strong>compatible indeterminado</strong> (infinitas; rectas coincidentes) o <strong>incompatible</strong> (ninguna; rectas paralelas).</p>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\(x+y=5\\) y \\(x-y=1\\): sumando ambas, \\(2x=6\\Rightarrow x=3\\); luego \\(y=2\\). Solución \\((3,2)\\).
+      </div>
+
+      <h2>Inecuaciones</h2>
+      <p>Una <strong>inecuación</strong> usa \\(<,\\ >,\\ \\le,\\ \\ge\\) en lugar de \\(=\\). Su solución suele ser un <strong>intervalo</strong>, no un número aislado.</p>
+      <div class="callout warn">
+        <strong class="callout__tag">Regla de oro</strong>
+        Si se <strong>multiplica o divide por un número negativo</strong>, se <strong>invierte</strong> el sentido de la desigualdad. Ej.: \\(-2x<6 \\Rightarrow x>-3\\).
+      </div>
+      <h3>Inecuación lineal</h3>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\(3x-1\\ge 5 \\Rightarrow 3x\\ge6 \\Rightarrow x\\ge2\\). Solución: \\([2,+\\infty)\\).
+      </div>
+      <h3>Inecuación cuadrática</h3>
+      <p>Se pasan todos los términos a un lado, se hallan las raíces de \\(ax^{2}+bx+c\\) y se estudia el <strong>signo</strong> en cada intervalo que ellas determinan.</p>
+      <div class="callout tip">
+        <strong class="callout__tag">Herramienta</strong>
+        Para inecuaciones con valor absoluto, usá el <a href="#/tool/reales">Resolutor de inecuaciones</a>.
+      </div>
+    `,
+    quiz: [
+      { q: "La solución de \\(2x+6=0\\) es:",
+        opts: ["\\(x=3\\)", "\\(x=-3\\)", "\\(x=6\\)", "\\(x=-6\\)"],
+        a: 1, exp: "\\(2x=-6\\Rightarrow x=-3\\)." },
+      { q: "En \\(ax^{2}+bx+c=0\\), si \\(\\Delta=b^{2}-4ac<0\\):",
+        opts: ["hay dos soluciones reales", "hay una solución doble", "no hay soluciones reales", "hay infinitas"],
+        a: 2, exp: "Discriminante negativo ⇒ sin soluciones reales (dos complejas)." },
+      { q: "Al multiplicar una inecuación por \\(-1\\):",
+        opts: ["no cambia nada", "se invierte el signo de desigualdad", "se suma 1", "queda igual a 0"],
+        a: 1, exp: "Multiplicar o dividir por negativo invierte \\(<\\) por \\(>\\), etc." },
+      { q: "La solución de \\(3x-1\\ge 5\\) es:",
+        opts: ["\\(x\\le 2\\)", "\\(x\\ge 2\\)", "\\(x>2\\)", "\\(x=2\\)"],
+        a: 1, exp: "\\(3x\\ge6\\Rightarrow x\\ge2\\), o sea \\([2,+\\infty)\\)." },
+      { q: "Las raíces de \\(x^{2}-5x+6=0\\) son:",
+        opts: ["\\(2\\) y \\(3\\)", "\\(-2\\) y \\(-3\\)", "\\(1\\) y \\(6\\)", "\\(5\\) y \\(6\\)"],
+        a: 0, exp: "\\(\\Delta=1\\), \\(x=\\dfrac{5\\pm1}{2}\\Rightarrow 3\\) y \\(2\\)." },
+    ],
+    cards: [
+      { q: "Ecuación de primer grado", a: "\\(ax+b=0\\Rightarrow x=-\\dfrac{b}{a}\\)." },
+      { q: "Fórmula resolvente", a: "\\(x=\\dfrac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}\\)." },
+      { q: "Discriminante", a: "\\(\\Delta=b^{2}-4ac\\). >0: dos raíces; =0: una doble; <0: complejas." },
+      { q: "Vieta (suma y producto)", a: "\\(x_{1}+x_{2}=-\\dfrac{b}{a}\\), \\(x_{1}x_{2}=\\dfrac{c}{a}\\)." },
+      { q: "Métodos para sistemas 2×2", a: "Sustitución, igualación y reducción." },
+      { q: "Regla clave de inecuaciones", a: "Multiplicar o dividir por negativo invierte la desigualdad." },
+    ]
+  },
+
+  /* ===================================================================
      UNIDAD — FUNCIONES
      =================================================================== */
   {
