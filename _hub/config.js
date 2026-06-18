@@ -66,6 +66,7 @@ window.HUB_CONFIG = {
       materias: [
         { nombre: "Electrónica", icono: "zap",   ruta: "Sistemas_2do_a%C3%B1o/Electronica/web/index.html",  color: "#FBBF24" },
         { nombre: "Redes",       icono: "globe", ruta: "Sistemas_2do_a%C3%B1o/Estudio%20Redes/index.html",   color: "#38BDF8" },
+        { nombre: "Estadística", icono: "chart", ruta: "Sistemas_2do_a%C3%B1o/Estudio%20Estadistica/web/index.html", color: "#2DD4BF" },
       ],
     },
     {

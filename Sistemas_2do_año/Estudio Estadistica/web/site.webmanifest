@@ -1,0 +1,19 @@
+{
+  "name": "Estudio Estadística",
+  "short_name": "Estadística",
+  "description": "Plataforma interactiva de estudio de Estadística Descriptiva: introducción, presentación de datos, medidas de posición y dispersión.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07060C",
+  "theme_color": "#8B5CF6",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
