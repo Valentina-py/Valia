@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tu panel en Valía: perfil, estadísticas y tus apuntes." />
+  <meta name="theme-color" content="#8B5CF6" />
+  <meta name="robots" content="noindex" />
+  <title>Mi panel · Valía</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="_hub/hub.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <span class="logo" id="brandLogo">V</span>
+        <span id="brandName">Valía</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="link">Inicio</a>
+        <a href="index.html#apuntes" class="link">Apuntes</a>
+        <button class="icon-btn" id="themeToggle" title="Cambiar tema"></button>
+        <button class="btn btn-ghost" id="logoutBtn">Cerrar sesión</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PANEL -->
+  <main class="panel-page" id="panelMain" hidden>
+    <div class="container">
+      <span class="eyebrow">Tu espacio</span>
+      <h2 class="section-title" style="margin-bottom:24px;">Mi panel</h2>
+
+      <div class="dash">
+        <div class="dash-head">
+          <div class="dash-user">
+            <span class="dash-av" id="dashAv">U</span>
+            <div>
+              <h2 id="dashHola">Hola</h2>
+              <p class="muted" id="dashEmail"></p>
+            </div>
+          </div>
+          <a href="index.html" class="btn btn-ghost">Volver al inicio</a>
+        </div>
+        <div class="dash-stats">
+          <div class="dash-stat"><b id="statApuntes">0</b><span>Apuntes subidos</span></div>
+          <div class="dash-stat"><b id="statMateriasUser">0</b><span>Materias distintas</span></div>
+          <div class="dash-stat"><b id="statUltimo">—</b><span>Último apunte</span></div>
+        </div>
+      </div>
+
+      <div class="panel-grid">
+        <!-- Subir -->
+        <div class="panel">
+          <h3>Subir apunte</h3>
+          <p class="hint">PDF, imagen, Word o lo que uses.</p>
+          <div id="uploadForm">
+            <div class="field">
+              <label>Materia o institución</label>
+              <select id="apMateria"></select>
+            </div>
+            <div class="field otra-field" id="otraField" hidden>
+              <label>Nombre de la materia / institución</label>
+              <input type="text" id="apMateriaOtra" placeholder="Ej: Facultad de Derecho · Civil I" />
+            </div>
+            <div class="field">
+              <label>Título</label>
+              <input type="text" id="apTitulo" placeholder="Ej: Resumen Unidad 1 · Lógica" />
+            </div>
+            <label class="dropzone" id="dropzone">
+              <input type="file" id="apFile" hidden />
+              <div class="big" data-icon="upload" data-size="30"></div>
+              <div id="dropText">Arrastra tu archivo o haz clic para elegirlo</div>
+            </label>
+            <div class="file-chip" id="fileChip">
+              <div class="fc-ico" id="fcIco"></div>
+              <div class="fc-meta"><b id="fcName"></b><span id="fcSize"></span></div>
+              <button type="button" class="fc-x" id="fcRemove" title="Quitar archivo">&times;</button>
+            </div>
+            <button class="btn btn-primary" id="uploadBtn" style="width:100%; justify-content:center; margin-top:16px;">Subir apunte</button>
+            <div class="msg" id="uploadMsg"></div>
+          </div>
+        </div>
+
+        <!-- Mis apuntes -->
+        <div class="panel">
+          <div class="apuntes-head">
+            <h3>Mis apuntes</h3>
+            <p class="hint" id="misCount">—</p>
+          </div>
+          <div class="apunte-list" id="misApuntes" style="margin-top:16px; max-height:560px;"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Sin sesión -->
+  <div class="container" id="needLogin" style="padding:150px 22px 100px; text-align:center;" hidden>
+    <div class="lock" data-icon="lock" data-size="40" style="color:var(--muted);"></div>
+    <h2 style="margin-top:14px;">Necesitás iniciar sesión</h2>
+    <p class="hint">Volvé al inicio para entrar y después abrí tu panel.</p>
+    <a href="index.html#entrar" class="btn btn-primary" style="margin-top:18px;">Iniciar sesión</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="_hub/config.js"></script>
+  <script src="_hub/panel.js"></script>
+</body>
+</html>

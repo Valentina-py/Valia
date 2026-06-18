@@ -156,61 +156,6 @@
     </div>
   </footer>
 
-  <!-- ===================== PANEL DE USUARIO (drawer) ===================== -->
-  <div class="drawer-overlay" id="drawerOverlay"></div>
-  <aside class="drawer" id="userDrawer" aria-hidden="true">
-    <div class="drawer-head">
-      <div class="dash-user">
-        <span class="dash-av" id="dashAv">U</span>
-        <div>
-          <h2 id="dashHola">Hola</h2>
-          <p class="muted" id="dashEmail"></p>
-        </div>
-      </div>
-      <button class="icon-btn" id="drawerClose" title="Cerrar" data-icon="x" data-size="16"></button>
-    </div>
-    <div class="drawer-body">
-      <div class="dash-stats">
-        <div class="dash-stat"><b id="statApuntes">0</b><span>Apuntes</span></div>
-        <div class="dash-stat"><b id="statMateriasUser">0</b><span>Materias</span></div>
-        <div class="dash-stat"><b id="statUltimo">—</b><span>Último</span></div>
-      </div>
-
-      <h3 class="drawer-title first">Subir apunte</h3>
-      <div id="uploadForm">
-        <div class="field">
-          <label>Materia o institución</label>
-          <select id="apMateria"></select>
-        </div>
-        <div class="field otra-field" id="otraField" hidden>
-          <label>Nombre de la materia / institución</label>
-          <input type="text" id="apMateriaOtra" placeholder="Ej: Facultad de Derecho · Civil I" />
-        </div>
-        <div class="field">
-          <label>Título</label>
-          <input type="text" id="apTitulo" placeholder="Ej: Resumen Unidad 1 · Lógica" />
-        </div>
-        <label class="dropzone" id="dropzone">
-          <input type="file" id="apFile" hidden />
-          <div class="big" data-icon="upload" data-size="30"></div>
-          <div id="dropText">Arrastra tu archivo o haz clic para elegirlo</div>
-        </label>
-        <div class="file-chip" id="fileChip">
-          <div class="fc-ico" id="fcIco"></div>
-          <div class="fc-meta"><b id="fcName"></b><span id="fcSize"></span></div>
-          <button type="button" class="fc-x" id="fcRemove" title="Quitar archivo">&times;</button>
-        </div>
-        <button class="btn btn-primary" id="uploadBtn" style="width:100%; justify-content:center; margin-top:16px;">Subir apunte</button>
-        <div class="msg" id="uploadMsg"></div>
-      </div>
-
-      <h3 class="drawer-title">Mis apuntes</h3>
-      <div class="apunte-list" id="misApuntes"></div>
-
-      <button class="btn btn-ghost" id="dashLogout" style="width:100%; margin-top:22px; justify-content:center;">Cerrar sesión</button>
-    </div>
-  </aside>
-
   <!-- ===================== MODAL LOGIN ===================== -->
   <div class="modal-overlay" id="authModal">
     <div class="modal">

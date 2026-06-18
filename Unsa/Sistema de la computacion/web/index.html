@@ -96,5 +96,28 @@
       window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
     }
   </script>
+  <!-- Valia: reflejar sesion iniciada en la barra -->
+  <script>
+  (function(){
+    try{
+      var key=null;
+      for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i); if(/^sb-.*-auth-token$/.test(k)){key=k;break;}}
+      if(!key) return;
+      var s=JSON.parse(localStorage.getItem(key));
+      var u=(s&&s.user)||(s&&s.currentSession&&s.currentSession.user);
+      var exp=(s&&s.expires_at)||(s&&s.currentSession&&s.currentSession.expires_at);
+      if(!u||(exp&&exp*1000<Date.now())) return;
+      var meta=u.user_metadata||{};
+      var name=meta.username||meta.full_name||u.email||"Mi cuenta";
+      var login=document.querySelector(".topbar__login");
+      var home=document.querySelector(".topbar__home");
+      if(login){
+        login.textContent=name.length>16?name.slice(0,16)+"\u2026":name;
+        if(home){ login.setAttribute("href", home.getAttribute("href").replace("index.html","panel.html")); }
+        login.setAttribute("title","Ir a mi panel");
+      }
+    }catch(e){}
+  })();
+  </script>
 </body>
 </html>

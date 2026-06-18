@@ -84,7 +84,6 @@
 
   /* ---------- Materias ---------- */
   const mount = $("#gruposMount");
-  const sel = $("#apMateria");
   let totalMaterias = 0;
   (C.grupos || []).forEach((g) => {
     const wrap = document.createElement("div");
@@ -92,9 +91,6 @@
     const cards = g.materias.map((m, i) => {
       totalMaterias++;
       const p = 0;
-      const opt = document.createElement("option");
-      opt.value = m.nombre; opt.textContent = `${g.titulo} · ${m.nombre}`;
-      sel.appendChild(opt);
       return `
         <a class="card reveal d${(i % 4) + 1}" href="${m.ruta}" style="--card-accent:${m.color || "var(--accent)"}">
           <div class="ico">${icon(m.icono, 24)}</div>
@@ -108,16 +104,6 @@
     mount.appendChild(wrap);
   });
   $("#statMaterias").textContent = totalMaterias;
-
-  // Opción "Otra materia / institución" + campo de texto libre
-  const optOtra = document.createElement("option");
-  optOtra.value = "__otra__"; optOtra.textContent = "Otra materia / institución…";
-  sel.appendChild(optOtra);
-  const otraField = $("#otraField"), apOtra = $("#apMateriaOtra");
-  sel.addEventListener("change", () => {
-    otraField.hidden = sel.value !== "__otra__";
-    if (sel.value === "__otra__") apOtra.focus();
-  });
 
   /* ---------- Donativos ---------- */
   const payRow = $("#payRow");
@@ -151,7 +137,8 @@
   const openModal = () => { modal.classList.add("open"); $("#demoNote").hidden = !DEMO; };
   const closeModal = () => modal.classList.remove("open");
   $("#loginNavBtn").addEventListener("click", openModal);
-  $("#heroLoginBtn").addEventListener("click", () => { if (isLogged()) openDrawer(); else openModal(); });
+  $("#panelBtn").addEventListener("click", () => { location.href = "panel.html"; });
+  $("#heroLoginBtn").addEventListener("click", () => { if (isLogged()) location.href = "panel.html"; else openModal(); });
   $("#lockedLoginBtn") && $("#lockedLoginBtn").addEventListener("click", openModal);
   $("#modalClose").addEventListener("click", closeModal);
   modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
@@ -160,15 +147,6 @@
   const maybeOpenFromHash = () => { if (/^#(entrar|login)$/i.test(location.hash)) openModal(); };
   maybeOpenFromHash();
   window.addEventListener("hashchange", maybeOpenFromHash);
-
-  // ---- Panel de usuario (drawer lateral) ----
-  const drawer = $("#userDrawer"), drawerOv = $("#drawerOverlay");
-  const openDrawer = () => { drawer.classList.add("show"); drawerOv.classList.add("show"); document.body.style.overflow = "hidden"; loadMisApuntes(); };
-  const closeDrawer = () => { drawer.classList.remove("show"); drawerOv.classList.remove("show"); document.body.style.overflow = ""; };
-  $("#panelBtn").addEventListener("click", openDrawer);
-  $("#drawerClose").addEventListener("click", closeDrawer);
-  drawerOv.addEventListener("click", closeDrawer);
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
 
   let currentUser = null;
   const isLogged = () => !!currentUser;
@@ -198,17 +176,11 @@
       loginBtn.style.display = "none";
       $("#userEmail").textContent = name;
       $("#userAv").textContent = (name[0] || "U").toUpperCase();
-      // Panel de usuario (engranaje + drawer)
-      $("#panelBtn").hidden = false;
-      $("#dashAv").textContent = (name[0] || "U").toUpperCase();
-      $("#dashHola").textContent = "Hola, " + name;
-      $("#dashEmail").textContent = user.email || "";
-      loadMisApuntes();
+      $("#panelBtn").hidden = false;   // engranaje → panel.html
     } else {
       chip.classList.remove("show");
       loginBtn.style.display = "";
       $("#panelBtn").hidden = true;
-      closeDrawer();
     }
   }
 
@@ -296,58 +268,7 @@
     sb.auth.onAuthStateChange((_e, session) => { renderUser(session ? session.user : null); loadApuntes(); });
   }
 
-  /* ---------- Subir apuntes ---------- */
-  const dz = $("#dropzone"), fileInput = $("#apFile"), dropText = $("#dropText");
-  const fileChip = $("#fileChip"), fcName = $("#fcName"), fcSize = $("#fcSize"), fcIco = $("#fcIco");
-  function showFile(file) {
-    if (!file) { fileChip.classList.remove("show"); dropText.textContent = "Arrastra tu archivo o haz clic para elegirlo"; return; }
-    fcName.textContent = file.name;
-    fcSize.textContent = fmtSize(file.size);
-    fcIco.innerHTML = icon(fileIconName(file.name), 20);
-    fileChip.classList.add("show");
-    dropText.textContent = "Archivo listo · tocá para cambiarlo";
-  }
-  fileInput.addEventListener("change", () => showFile(fileInput.files[0]));
-  $("#fcRemove").addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); fileInput.value = ""; showFile(null); });
-  ["dragover", "dragenter"].forEach((ev) => dz.addEventListener(ev, (e) => { e.preventDefault(); dz.classList.add("drag"); }));
-  ["dragleave", "drop"].forEach((ev) => dz.addEventListener(ev, () => dz.classList.remove("drag")));
-  dz.addEventListener("drop", (e) => { e.preventDefault(); if (e.dataTransfer.files[0]) { fileInput.files = e.dataTransfer.files; showFile(e.dataTransfer.files[0]); } });
-
-  const uploadBtn = $("#uploadBtn");
-  uploadBtn.addEventListener("click", async () => {
-    const titulo = $("#apTitulo").value.trim();
-    const materia = sel.value === "__otra__" ? apOtra.value.trim() : sel.value;
-    const file = fileInput.files[0];
-    const msg = $("#uploadMsg");
-    if (!titulo || !file) { msg.className = "msg err"; msg.textContent = "Poné un título y elegí un archivo."; return; }
-    if (sel.value === "__otra__" && !materia) { msg.className = "msg err"; msg.textContent = "Escribí el nombre de la materia o institución."; return; }
-    const lock = (on) => { uploadBtn.disabled = on; uploadBtn.textContent = on ? "Subiendo…" : "Subir apunte"; };
-    msg.className = "msg"; msg.textContent = "Subiendo…"; lock(true);
-    if (DEMO) {
-      demoStore.addApunte({ titulo, materia, name: file.name, size: file.size, url: "#" });
-      msg.className = "msg ok"; msg.textContent = "Apunte guardado (modo demo).";
-      lock(false); resetUpload(); loadApuntes(); loadMisApuntes(); return;
-    }
-    try {
-      const { data: u } = await sb.auth.getUser();
-      const uid = u.user.id;
-      const path = `${uid}/${Date.now()}_${file.name}`;
-      const up = await sb.storage.from(C.supabase.bucket).upload(path, file);
-      if (up.error) throw up.error;
-      const { data: pub } = sb.storage.from(C.supabase.bucket).getPublicUrl(path);
-      const ins = await sb.from("apuntes").insert({ titulo, materia, file_path: path, url: pub.publicUrl, user_id: uid });
-      if (ins.error) throw ins.error;
-      msg.className = "msg ok"; msg.textContent = "¡Apunte subido!";
-      resetUpload(); loadApuntes(); loadMisApuntes();
-    } catch (err) { msg.className = "msg err"; msg.textContent = "Error: " + err.message; }
-    finally { lock(false); }
-  });
-  function resetUpload() {
-    $("#apTitulo").value = ""; fileInput.value = ""; showFile(null);
-    sel.value = sel.options[0] ? sel.options[0].value : ""; otraField.hidden = true; apOtra.value = "";
-  }
-
-  /* ---------- Listar apuntes ---------- */
+  /* ---------- Listar apuntes (lista pública) ---------- */
   const fileIconName = (name = "") => {
     const e = name.split(".").pop().toLowerCase();
     if (["png", "jpg", "jpeg", "gif", "webp", "svg"].includes(e)) return "image";
@@ -381,49 +302,6 @@
       </div>`).join("");
   }
   function escapeHtml(s = "") { return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
-
-  /* ---------- Mi panel: apuntes propios + estadísticas ---------- */
-  $("#dashLogout").addEventListener("click", () => $("#logoutBtn").click());
-
-  async function loadMisApuntes() {
-    const wrap = $("#misApuntes"); if (!wrap) return;
-    let items = [];
-    if (DEMO) {
-      items = demoStore.apuntes().map((a, i) => ({ ...a, _demoIndex: i }));
-    } else if (currentUser) {
-      const { data, error } = await sb.from("apuntes").select("*").eq("user_id", currentUser.id).order("created_at", { ascending: false });
-      if (!error && data) items = data.map((d) => ({ id: d.id, titulo: d.titulo, materia: d.materia, file_path: d.file_path, name: (d.file_path || "").split("/").pop(), url: d.url }));
-    }
-    const sA = $("#statApuntes"), sM = $("#statMateriasUser"), sU = $("#statUltimo");
-    if (sA) sA.textContent = items.length;
-    if (sM) sM.textContent = new Set(items.map((i) => i.materia || "General")).size;
-    if (sU) { const u = items[0]; sU.textContent = u ? (u.titulo.length > 13 ? u.titulo.slice(0, 13) + "…" : u.titulo) : "—"; }
-    if (!items.length) { wrap.innerHTML = `<div class="empty">Todavía no subiste apuntes. Usá el formulario para subir el primero.</div>`; return; }
-    wrap.innerHTML = items.map((a) => `
-      <div class="apunte-item">
-        <div class="fico">${icon(fileIconName(a.name), 20)}</div>
-        <div class="meta"><b>${escapeHtml(a.titulo)}</b><span>${escapeHtml(a.materia || "General")}</span></div>
-        <div class="actions">
-          <a class="dl" href="${a.url || "#"}" ${a.url && a.url !== "#" ? 'target="_blank" rel="noopener"' : ""}>Abrir</a>
-          <button class="del" data-id="${a.id || ""}" data-path="${escapeHtml(a.file_path || "")}" data-demo="${a._demoIndex ?? ""}">Borrar</button>
-        </div>
-      </div>`).join("");
-    wrap.querySelectorAll(".del").forEach((b) => b.addEventListener("click", () => borrarApunte(b.dataset)));
-  }
-
-  async function borrarApunte(ds) {
-    if (!confirm("¿Borrar este apunte? No se puede deshacer.")) return;
-    if (DEMO) {
-      const l = demoStore.apuntes(); l.splice(Number(ds.demo), 1);
-      localStorage.setItem("hub-demo-apuntes", JSON.stringify(l));
-      loadMisApuntes(); loadApuntes(); return;
-    }
-    try {
-      if (ds.path) await sb.storage.from(C.supabase.bucket).remove([ds.path]);
-      if (ds.id) await sb.from("apuntes").delete().eq("id", ds.id);
-      loadMisApuntes(); loadApuntes();
-    } catch (err) { alert("No se pudo borrar: " + err.message); }
-  }
 
   /* ---------- Init ---------- */
   observeReveals();
