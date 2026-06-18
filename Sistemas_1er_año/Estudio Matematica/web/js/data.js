@@ -124,6 +124,51 @@ window.APP_DATA = {
         $$ \\sim\\big(\\forall x: p(x)\\big) \\equiv \\exists x / \\sim p(x) $$
         $$ \\sim\\big(\\exists x / p(x)\\big) \\equiv \\forall x : \\sim p(x) $$
       </div>
+
+      <h2>Tautología, contradicción y contingencia</h2>
+      <p>Según los valores de su última columna en la tabla de verdad, una proposición compuesta se clasifica en:</p>
+      <ul>
+        <li><strong>Tautología</strong>: es <em>siempre verdadera</em>, cualesquiera sean los valores. Ej.: \\(p \\vee \\sim p\\).</li>
+        <li><strong>Contradicción</strong>: es <em>siempre falsa</em>. Ej.: \\(p \\wedge \\sim p\\).</li>
+        <li><strong>Contingencia</strong>: a veces V y a veces F (depende de los valores).</li>
+      </ul>
+
+      <h2>Implicación y equivalencia lógica</h2>
+      <div class="callout def">
+        <strong class="callout__tag">Definición</strong>
+        \\(p \\Rightarrow q\\) (\\(p\\) <strong>implica</strong> \\(q\\)) significa que el condicional \\(p\\rightarrow q\\) es una <em>tautología</em>. \\(p \\Leftrightarrow q\\) (<strong>equivalencia</strong>) significa que \\(p\\leftrightarrow q\\) es tautología, es decir, tienen la <em>misma</em> tabla de verdad.
+      </div>
+      <p>Las equivalencias se usan para reemplazar una fórmula por otra más simple. Ejemplos clave:</p>
+      <div class="formula-box">
+        $$ p \\rightarrow q \\equiv \\sim p \\vee q \\qquad \\sim(p\\rightarrow q)\\equiv p \\wedge \\sim q $$
+        $$ p \\leftrightarrow q \\equiv (p\\rightarrow q)\\wedge(q\\rightarrow p) $$
+      </div>
+
+      <h2>Razonamientos válidos</h2>
+      <p>Un <strong>razonamiento</strong> tiene premisas y una conclusión. Es <em>válido</em> si, siempre que las premisas son verdaderas, la conclusión también lo es. Reglas de inferencia más usadas:</p>
+      <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Nombre</th><th>Premisas</th><th>Conclusión</th></tr></thead>
+        <tbody>
+          <tr><td>Modus ponens</td><td>\\(p\\rightarrow q,\\ \\ p\\)</td><td>\\(q\\)</td></tr>
+          <tr><td>Modus tollens</td><td>\\(p\\rightarrow q,\\ \\ \\sim q\\)</td><td>\\(\\sim p\\)</td></tr>
+          <tr><td>Silogismo hipotético</td><td>\\(p\\rightarrow q,\\ \\ q\\rightarrow r\\)</td><td>\\(p\\rightarrow r\\)</td></tr>
+          <tr><td>Silogismo disyuntivo</td><td>\\(p\\vee q,\\ \\ \\sim p\\)</td><td>\\(q\\)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout warn">
+        <strong class="callout__tag">Falacias</strong>
+        No confundir con razonamientos <em>inválidos</em>: la <strong>afirmación del consecuente</strong> (\\(p\\rightarrow q,\\ q \\therefore p\\)) y la <strong>negación del antecedente</strong> (\\(p\\rightarrow q,\\ \\sim p \\therefore \\sim q\\)) <strong>no</strong> son válidas.
+      </div>
+
+      <h2>Métodos de demostración</h2>
+      <ul>
+        <li><strong>Directo</strong>: se asume \\(p\\) y, mediante pasos lógicos, se llega a \\(q\\).</li>
+        <li><strong>Contrarrecíproco</strong>: en vez de \\(p\\rightarrow q\\) se prueba \\(\\sim q\\rightarrow\\sim p\\) (son equivalentes).</li>
+        <li><strong>Por el absurdo</strong>: se supone \\(\\sim q\\) y se llega a una contradicción.</li>
+        <li><strong>Contraejemplo</strong>: para refutar \\(\\forall x: p(x)\\) basta hallar <em>un</em> \\(x\\) que no la cumpla.</li>
+      </ul>
     `,
     quiz: [
       { q: "¿Cuándo es FALSO el condicional \\(p \\rightarrow q\\)?",
@@ -257,6 +302,51 @@ window.APP_DATA = {
         La <strong>pertenencia</strong> \\((\\in)\\) vincula un <em>elemento</em> con un conjunto; la <strong>inclusión</strong> \\((\\subset)\\) vincula un <em>conjunto</em> con otro conjunto.
         Por ejemplo, en \\(A = \\{1, \\{2\\}, 3, \\{2,3\\}, \\varnothing, 4\\}\\):
         \\(\\{2\\} \\in A\\) es V, pero \\(\\{2\\} \\subset A\\) es F.
+      </div>
+
+      <h2>Diferencia simétrica</h2>
+      <p>Reúne los elementos que están en <strong>uno u otro</strong> conjunto, pero <strong>no en ambos</strong>:</p>
+      <div class="formula-box">
+        $$ A \\triangle B = (A \\setminus B) \\cup (B \\setminus A) = (A\\cup B)\\setminus(A\\cap B) $$
+      </div>
+
+      <h2>Conjunto de partes (potencia)</h2>
+      <div class="callout def">
+        <strong class="callout__tag">Definición</strong>
+        \\(\\mathcal{P}(A)\\) es el conjunto de <em>todos</em> los subconjuntos de \\(A\\) (incluyendo \\(\\varnothing\\) y el propio \\(A\\)).
+      </div>
+      <p>Si \\(A\\) tiene \\(n\\) elementos, \\(\\mathcal{P}(A)\\) tiene \\(2^{n}\\).</p>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\(A=\\{a,b\\}\\ \\Rightarrow\\ \\mathcal{P}(A)=\\{\\varnothing,\\{a\\},\\{b\\},\\{a,b\\}\\}\\), que tiene \\(2^{2}=4\\) elementos.
+      </div>
+
+      <h2>Cardinalidad</h2>
+      <p>El <strong>cardinal</strong> \\(|A|\\) (o \\(\\#A\\)) es la cantidad de elementos. Para conjuntos finitos vale el <strong>principio de inclusión-exclusión</strong>:</p>
+      <div class="formula-box">
+        $$ |A \\cup B| = |A| + |B| - |A \\cap B| $$
+      </div>
+
+      <h2>Producto cartesiano</h2>
+      <p>Es el conjunto de todos los <strong>pares ordenados</strong> con primera componente en \\(A\\) y segunda en \\(B\\):</p>
+      <div class="formula-box">
+        $$ A \\times B = \\{(a,b) \\mid a \\in A \\,\\wedge\\, b \\in B\\} $$
+      </div>
+      <p>En general \\(A\\times B \\neq B\\times A\\), y \\(|A\\times B| = |A|\\cdot|B|\\). Es la base de las <em>relaciones</em> y <em>funciones</em>.</p>
+
+      <h2>Propiedades de las operaciones</h2>
+      <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Propiedad</th><th>Unión e intersección</th></tr></thead>
+        <tbody>
+          <tr><td>Conmutativa</td><td>\\(A\\cup B=B\\cup A\\); &nbsp; \\(A\\cap B=B\\cap A\\)</td></tr>
+          <tr><td>Asociativa</td><td>\\((A\\cup B)\\cup C=A\\cup(B\\cup C)\\)</td></tr>
+          <tr><td>Distributiva</td><td>\\(A\\cap(B\\cup C)=(A\\cap B)\\cup(A\\cap C)\\)</td></tr>
+          <tr><td>Idempotente</td><td>\\(A\\cup A=A\\); &nbsp; \\(A\\cap A=A\\)</td></tr>
+          <tr><td>Absorción</td><td>\\(A\\cup(A\\cap B)=A\\)</td></tr>
+          <tr><td>Neutro</td><td>\\(A\\cup\\varnothing=A\\); &nbsp; \\(A\\cap U=A\\)</td></tr>
+        </tbody>
+      </table>
       </div>
     `,
     quiz: [
@@ -483,6 +573,50 @@ window.APP_DATA = {
         </tbody>
       </table>
       </div>
+
+      <h2>Potenciación en \\(\\mathbb{R}\\)</h2>
+      <p>Es multiplicar una base \\(a\\) por sí misma \\(n\\) veces. Propiedades (con \\(a,b\\neq0\\)):</p>
+      <div class="formula-box">
+        $$ a^{m}\\cdot a^{n}=a^{m+n}\\qquad \\frac{a^{m}}{a^{n}}=a^{m-n}\\qquad (a^{m})^{n}=a^{m\\,n} $$
+        $$ (a\\,b)^{n}=a^{n}b^{n}\\qquad a^{0}=1\\qquad a^{-n}=\\frac{1}{a^{n}} $$
+      </div>
+      <div class="callout warn">
+        <strong class="callout__tag">Signos</strong>
+        Base negativa: con exponente <em>par</em> da positivo \\(((-2)^{4}=16)\\); con exponente <em>impar</em>, negativo \\(((-2)^{3}=-8)\\). Ojo: \\(-2^{4}=-16\\), porque la potencia actúa solo sobre el \\(2\\).
+      </div>
+
+      <h2>Radicación y radicales</h2>
+      <p>Es la operación inversa de la potenciación: \\(\\sqrt[n]{a}=b \\iff b^{n}=a\\). Como exponente fraccionario: \\(\\sqrt[n]{a^{m}}=a^{m/n}\\).</p>
+      <div class="formula-box">
+        $$ \\sqrt[n]{a\\,b}=\\sqrt[n]{a}\\,\\sqrt[n]{b}\\qquad \\sqrt[n]{\\tfrac{a}{b}}=\\frac{\\sqrt[n]{a}}{\\sqrt[n]{b}}\\qquad \\sqrt[m]{\\sqrt[n]{a}}=\\sqrt[m\\,n]{a} $$
+      </div>
+      <div class="callout def">
+        <strong class="callout__tag">Importante</strong>
+        Para todo real, \\(\\sqrt{x^{2}}=|x|\\) (no \\(x\\)). Un índice par exige radicando \\(\\ge 0\\) en \\(\\mathbb{R}\\).
+      </div>
+      <p><strong>Racionalizar</strong> es quitar la raíz del denominador multiplicando por un factor conveniente:</p>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\(\\dfrac{3}{\\sqrt{5}}=\\dfrac{3}{\\sqrt{5}}\\cdot\\dfrac{\\sqrt{5}}{\\sqrt{5}}=\\dfrac{3\\sqrt{5}}{5}\\). &nbsp; Con binomios se usa el conjugado: \\(\\dfrac{1}{\\sqrt{3}-1}\\cdot\\dfrac{\\sqrt{3}+1}{\\sqrt{3}+1}=\\dfrac{\\sqrt{3}+1}{2}\\).
+      </div>
+      <div class="callout tip">
+        <strong class="callout__tag">Herramienta</strong>
+        Simplificá raíces paso a paso en el <a href="#/tool/radicales">Simplificador de radicales</a>.
+      </div>
+
+      <h2>Notación científica</h2>
+      <p>Sirve para escribir números muy grandes o muy chicos: \\(N = m\\times 10^{e}\\), con \\(1\\le |m| < 10\\) y \\(e\\) entero.</p>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplos</strong>
+        \\(150\\,000 = 1{,}5\\times10^{5}\\); &nbsp; \\(0{,}00032 = 3{,}2\\times10^{-4}\\).
+      </div>
+
+      <h2>Entornos</h2>
+      <p>Un <strong>entorno</strong> de centro \\(a\\) y radio \\(\\delta>0\\) es el intervalo abierto de los reales que distan de \\(a\\) menos que \\(\\delta\\):</p>
+      <div class="formula-box">
+        $$ E(a,\\delta)=\\{x\\in\\mathbb{R} : |x-a|<\\delta\\}=(a-\\delta,\\;a+\\delta) $$
+      </div>
+      <p>El <strong>entorno reducido</strong> excluye el centro: \\(E^{*}(a,\\delta)=E(a,\\delta)\\setminus\\{a\\}\\). Los entornos son la base de la idea de «acercarse» a un valor (límites).</p>
     `,
     quiz: [
       { q: "Por definición, \\(\\sqrt{x^{2}}\\) es igual a:",
@@ -572,7 +706,7 @@ window.APP_DATA = {
     glyph: "ℂ",
     icon: "complex",
     title: "Números Complejos",
-    desc: "Pares ordenados, unidad imaginaria, forma binómica, conjugado, módulo y potencias de i.",
+    desc: "Pares ordenados, forma binómica, conjugado, módulo, forma polar, De Moivre, raíces n-ésimas y forma exponencial.",
     tool: "complejos",
     html: `
       <p class="lead">Un <strong>número complejo</strong> es un par ordenado de números reales. Amplían a los reales y permiten resolver \\(x^2 = -1\\).</p>
@@ -640,6 +774,56 @@ window.APP_DATA = {
         <strong class="callout__tag">¡Cuidado!</strong>
         Si \\(a,b>0\\), <strong>no</strong> vale \\(\\sqrt{-a}\\cdot\\sqrt{-b} = \\sqrt{ab}\\). Por ejemplo \\(\\sqrt{-25}\\cdot\\sqrt{-4} = 5i\\cdot2i = 10i^2 = -10 \\neq \\sqrt{100}=10\\).
       </div>
+
+      <h2>Representación gráfica (plano de Argand)</h2>
+      <p>Cada complejo \\(z=a+bi\\) se representa como un <strong>punto</strong> \\((a,b)\\) o como un <strong>vector</strong> desde el origen. El eje horizontal es el <em>eje real</em> y el vertical el <em>eje imaginario</em>. El módulo \\(|z|\\) es la longitud del vector, y el ángulo que forma con el semieje real positivo es el <strong>argumento</strong> \\(\\theta=\\arg(z)\\).</p>
+
+      <h2>Forma polar y trigonométrica</h2>
+      <p>Si \\(r=|z|=\\sqrt{a^{2}+b^{2}}\\) y \\(\\theta\\) es el argumento, entonces \\(a=r\\cos\\theta\\) y \\(b=r\\,\\sin\\theta\\). Reemplazando:</p>
+      <div class="formula-box">
+        $$ z = r\\,(\\cos\\theta + i\\,\\sin\\theta) = r\\operatorname{cis}\\theta $$
+      </div>
+      <p>El argumento se obtiene de \\(\\tan\\theta = \\dfrac{b}{a}\\), <strong>cuidando el cuadrante</strong> de \\((a,b)\\). El argumento principal suele tomarse en \\(0^\\circ \\le \\theta < 360^\\circ\\).</p>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\(z = 1 + i\\): \\(r=\\sqrt{2}\\) y \\(\\theta=45^\\circ=\\frac{\\pi}{4}\\). Entonces \\(z=\\sqrt{2}\\,\\operatorname{cis}45^\\circ\\).
+      </div>
+      <div class="callout warn">
+        <strong class="callout__tag">Cuidado con el cuadrante</strong>
+        El \\(\\arctan\\) de la calculadora devuelve ángulos entre \\(-90^\\circ\\) y \\(90^\\circ\\). Si \\(a<0\\), hay que sumar \\(180^\\circ\\). Ej.: \\(z=-1+i\\) está en el 2.º cuadrante, así que \\(\\theta=135^\\circ\\) (no \\(-45^\\circ\\)).
+      </div>
+
+      <h2>Producto y cociente en forma polar</h2>
+      <p>En forma polar las operaciones se simplifican: <strong>los módulos se multiplican (o dividen) y los argumentos se suman (o restan)</strong>.</p>
+      <div class="formula-box">
+        $$ z_{1}\\,z_{2} = r_{1}r_{2}\\,\\operatorname{cis}(\\theta_{1}+\\theta_{2}) $$
+        $$ \\frac{z_{1}}{z_{2}} = \\frac{r_{1}}{r_{2}}\\,\\operatorname{cis}(\\theta_{1}-\\theta_{2}) $$
+      </div>
+
+      <h2>Teorema de De Moivre (potencias)</h2>
+      <p>Para elevar a la \\(n\\) en forma polar, se eleva el módulo y se multiplica el argumento:</p>
+      <div class="formula-box">
+        $$ z^{n} = r^{n}\\,\\operatorname{cis}(n\\theta) = r^{n}\\big(\\cos n\\theta + i\\,\\sin n\\theta\\big) $$
+      </div>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\((1+i)^{8}\\): \\(r=\\sqrt{2},\\ \\theta=45^\\circ\\). Entonces \\(z^{8}=(\\sqrt{2})^{8}\\operatorname{cis}(8\\cdot45^\\circ)=16\\,\\operatorname{cis}360^\\circ=16\\).
+      </div>
+
+      <h2>Raíces n-ésimas</h2>
+      <p>Todo complejo no nulo tiene <strong>exactamente \\(n\\) raíces n-ésimas distintas</strong>, ubicadas en los vértices de un polígono regular de \\(n\\) lados sobre una circunferencia de radio \\(\\sqrt[n]{r}\\):</p>
+      <div class="formula-box">
+        $$ w_{k} = \\sqrt[n]{r}\\;\\operatorname{cis}\\!\\left(\\frac{\\theta + 360^\\circ k}{n}\\right),\\quad k=0,1,\\dots,n-1 $$
+      </div>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        Raíces cúbicas de \\(8\\) (\\(r=8,\\ \\theta=0\\)): módulo \\(\\sqrt[3]{8}=2\\) y argumentos \\(0^\\circ,\\ 120^\\circ,\\ 240^\\circ\\). Resultan \\(2,\\ -1+\\sqrt{3}\\,i,\\ -1-\\sqrt{3}\\,i\\).
+      </div>
+
+      <h2>Forma exponencial (fórmula de Euler)</h2>
+      <p>Con la <strong>identidad de Euler</strong> \\(e^{i\\theta}=\\cos\\theta+i\\,\\sin\\theta\\), todo complejo se escribe de forma compacta:</p>
+      <div class="formula-box">$$ z = r\\,e^{i\\theta} $$</div>
+      <p>Caso célebre: \\(e^{i\\pi}+1=0\\), que reúne \\(e,\\ i,\\ \\pi,\\ 1\\) y \\(0\\) en una sola igualdad.</p>
 
       <div class="callout tip">
         <strong class="callout__tag">Calculadora</strong>
