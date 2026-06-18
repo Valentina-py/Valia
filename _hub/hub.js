@@ -34,6 +34,7 @@
     sheet: '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>',
     download: '<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>',
     x: '<path d="M18 6 6 18M6 6l12 12"/>',
+    settings: '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
   };
   const icon = (name, size = 24) =>
     `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[name] || P.book}</svg>`;
@@ -150,7 +151,7 @@
   const openModal = () => { modal.classList.add("open"); $("#demoNote").hidden = !DEMO; };
   const closeModal = () => modal.classList.remove("open");
   $("#loginNavBtn").addEventListener("click", openModal);
-  $("#heroLoginBtn").addEventListener("click", () => { location.hash = "#apuntes"; if (!isLogged()) openModal(); });
+  $("#heroLoginBtn").addEventListener("click", () => { if (isLogged()) openDrawer(); else openModal(); });
   $("#lockedLoginBtn") && $("#lockedLoginBtn").addEventListener("click", openModal);
   $("#modalClose").addEventListener("click", closeModal);
   modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
@@ -159,6 +160,15 @@
   const maybeOpenFromHash = () => { if (/^#(entrar|login)$/i.test(location.hash)) openModal(); };
   maybeOpenFromHash();
   window.addEventListener("hashchange", maybeOpenFromHash);
+
+  // ---- Panel de usuario (drawer lateral) ----
+  const drawer = $("#userDrawer"), drawerOv = $("#drawerOverlay");
+  const openDrawer = () => { drawer.classList.add("show"); drawerOv.classList.add("show"); document.body.style.overflow = "hidden"; loadMisApuntes(); };
+  const closeDrawer = () => { drawer.classList.remove("show"); drawerOv.classList.remove("show"); document.body.style.overflow = ""; };
+  $("#panelBtn").addEventListener("click", openDrawer);
+  $("#drawerClose").addEventListener("click", closeDrawer);
+  drawerOv.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
 
   let currentUser = null;
   const isLogged = () => !!currentUser;
@@ -188,10 +198,8 @@
       loginBtn.style.display = "none";
       $("#userEmail").textContent = name;
       $("#userAv").textContent = (name[0] || "U").toUpperCase();
-      $("#uploadForm").hidden = false;
-      $("#uploadLocked").hidden = true;
-      // Panel de usuario
-      $("#miPanel").hidden = false;
+      // Panel de usuario (engranaje + drawer)
+      $("#panelBtn").hidden = false;
       $("#dashAv").textContent = (name[0] || "U").toUpperCase();
       $("#dashHola").textContent = "Hola, " + name;
       $("#dashEmail").textContent = user.email || "";
@@ -199,9 +207,8 @@
     } else {
       chip.classList.remove("show");
       loginBtn.style.display = "";
-      $("#uploadForm").hidden = true;
-      $("#uploadLocked").hidden = false;
-      $("#miPanel").hidden = true;
+      $("#panelBtn").hidden = true;
+      closeDrawer();
     }
   }
 

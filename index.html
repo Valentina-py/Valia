@@ -51,6 +51,7 @@
           <span class="av" id="userAv">U</span>
           <button class="icon-btn" id="logoutBtn" title="Cerrar sesión" style="width:34px;height:34px" data-icon="logout" data-size="17"></button>
         </span>
+        <button class="icon-btn" id="panelBtn" title="Mi panel" data-icon="settings" data-size="18" hidden></button>
         <button class="btn btn-ghost" id="loginNavBtn">Entrar</button>
         <button class="icon-btn" id="themeToggle" title="Cambiar tema"></button>
       </div>
@@ -95,89 +96,19 @@
     </div>
   </div>
 
-  <!-- ===================== MI PANEL (usuario) ===================== -->
-  <section id="miPanel" hidden>
-    <div class="container">
-      <span class="eyebrow reveal">Tu espacio</span>
-      <h2 class="section-title reveal">Mi panel</h2>
-      <p class="section-sub reveal">Tu perfil, tus estadísticas y todos los apuntes que subiste, en un solo lugar.</p>
-      <div class="dash reveal" style="margin-top:32px;">
-        <div class="dash-head">
-          <div class="dash-user">
-            <span class="dash-av" id="dashAv">U</span>
-            <div>
-              <h2 id="dashHola">Hola</h2>
-              <p class="muted" id="dashEmail"></p>
-            </div>
-          </div>
-          <button class="btn btn-ghost" id="dashLogout">Cerrar sesión</button>
-        </div>
-        <div class="dash-stats">
-          <div class="dash-stat"><b id="statApuntes">0</b><span>Apuntes subidos</span></div>
-          <div class="dash-stat"><b id="statMateriasUser">0</b><span>Materias distintas</span></div>
-          <div class="dash-stat"><b id="statUltimo">—</b><span>Último apunte</span></div>
-        </div>
-        <div class="dash-section">
-          <h3>Mis apuntes</h3>
-          <div class="apunte-list" id="misApuntes"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== APUNTES ===================== -->
   <section id="apuntes">
     <div class="container">
       <span class="eyebrow reveal">Comunidad</span>
-      <h2 class="section-title reveal">Sube y comparte apuntes</h2>
-      <p class="section-sub reveal">Guarda tus resúmenes y descarga los de otros. Inicia sesión para subir; así tus apuntes te siguen en cualquier dispositivo.</p>
+      <h2 class="section-title reveal">Apuntes de la comunidad</h2>
+      <p class="section-sub reveal">Descargá los apuntes que otros compartieron. Iniciá sesión y abrí tu panel con el engranaje (arriba a la derecha) para subir los tuyos.</p>
 
-      <div class="apuntes-wrap" style="margin-top:40px;">
-        <!-- Subir -->
-        <div class="panel reveal">
-          <h3>Subir apunte</h3>
-          <p class="hint">PDF, imagen, Word o lo que uses.</p>
-
-          <div id="uploadForm">
-            <div class="field">
-              <label>Materia o institución</label>
-              <select id="apMateria"></select>
-            </div>
-            <div class="field otra-field" id="otraField" hidden>
-              <label>Nombre de la materia / institución</label>
-              <input type="text" id="apMateriaOtra" placeholder="Ej: Facultad de Derecho · Civil I" />
-            </div>
-            <div class="field">
-              <label>Título</label>
-              <input type="text" id="apTitulo" placeholder="Ej: Resumen Unidad 1 · Lógica" />
-            </div>
-            <label class="dropzone" id="dropzone">
-              <input type="file" id="apFile" hidden />
-              <div class="big" data-icon="upload" data-size="30"></div>
-              <div id="dropText">Arrastra tu archivo o haz clic para elegirlo</div>
-            </label>
-            <div class="file-chip" id="fileChip">
-              <div class="fc-ico" id="fcIco"></div>
-              <div class="fc-meta"><b id="fcName"></b><span id="fcSize"></span></div>
-              <button type="button" class="fc-x" id="fcRemove" title="Quitar archivo">&times;</button>
-            </div>
-            <button class="btn btn-primary" id="uploadBtn" style="width:100%; justify-content:center; margin-top:16px;">Subir apunte</button>
-            <div class="msg" id="uploadMsg"></div>
-          </div>
-
-          <div class="locked" id="uploadLocked" hidden>
-            <div class="lock" data-icon="lock" data-size="34"></div>
-            <p>Inicia sesión para subir tus apuntes.</p>
-            <button class="btn btn-primary" id="lockedLoginBtn" style="margin-top:14px;">Entrar / Crear cuenta</button>
-          </div>
-        </div>
-
-        <!-- Lista -->
-        <div class="panel reveal d1">
+      <div class="panel reveal" style="margin-top:40px;">
+        <div class="apuntes-head">
           <h3>Apuntes disponibles</h3>
           <p class="hint" id="apuntesCount">Cargando…</p>
-          <div class="apunte-list" id="apunteList"></div>
         </div>
+        <div class="apunte-list" id="apunteList" style="margin-top:16px;"></div>
       </div>
     </div>
   </section>
@@ -224,6 +155,61 @@
       <p class="footer-bottom">Hecho con cariño para estudiar mejor · <span id="year"></span></p>
     </div>
   </footer>
+
+  <!-- ===================== PANEL DE USUARIO (drawer) ===================== -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="drawer" id="userDrawer" aria-hidden="true">
+    <div class="drawer-head">
+      <div class="dash-user">
+        <span class="dash-av" id="dashAv">U</span>
+        <div>
+          <h2 id="dashHola">Hola</h2>
+          <p class="muted" id="dashEmail"></p>
+        </div>
+      </div>
+      <button class="icon-btn" id="drawerClose" title="Cerrar" data-icon="x" data-size="16"></button>
+    </div>
+    <div class="drawer-body">
+      <div class="dash-stats">
+        <div class="dash-stat"><b id="statApuntes">0</b><span>Apuntes</span></div>
+        <div class="dash-stat"><b id="statMateriasUser">0</b><span>Materias</span></div>
+        <div class="dash-stat"><b id="statUltimo">—</b><span>Último</span></div>
+      </div>
+
+      <h3 class="drawer-title first">Subir apunte</h3>
+      <div id="uploadForm">
+        <div class="field">
+          <label>Materia o institución</label>
+          <select id="apMateria"></select>
+        </div>
+        <div class="field otra-field" id="otraField" hidden>
+          <label>Nombre de la materia / institución</label>
+          <input type="text" id="apMateriaOtra" placeholder="Ej: Facultad de Derecho · Civil I" />
+        </div>
+        <div class="field">
+          <label>Título</label>
+          <input type="text" id="apTitulo" placeholder="Ej: Resumen Unidad 1 · Lógica" />
+        </div>
+        <label class="dropzone" id="dropzone">
+          <input type="file" id="apFile" hidden />
+          <div class="big" data-icon="upload" data-size="30"></div>
+          <div id="dropText">Arrastra tu archivo o haz clic para elegirlo</div>
+        </label>
+        <div class="file-chip" id="fileChip">
+          <div class="fc-ico" id="fcIco"></div>
+          <div class="fc-meta"><b id="fcName"></b><span id="fcSize"></span></div>
+          <button type="button" class="fc-x" id="fcRemove" title="Quitar archivo">&times;</button>
+        </div>
+        <button class="btn btn-primary" id="uploadBtn" style="width:100%; justify-content:center; margin-top:16px;">Subir apunte</button>
+        <div class="msg" id="uploadMsg"></div>
+      </div>
+
+      <h3 class="drawer-title">Mis apuntes</h3>
+      <div class="apunte-list" id="misApuntes"></div>
+
+      <button class="btn btn-ghost" id="dashLogout" style="width:100%; margin-top:22px; justify-content:center;">Cerrar sesión</button>
+    </div>
+  </aside>
 
   <!-- ===================== MODAL LOGIN ===================== -->
   <div class="modal-overlay" id="authModal">
