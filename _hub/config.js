@@ -43,7 +43,7 @@ window.HUB_CONFIG = {
      "endpoint" (se ve como https://formspree.io/f/XXXXXXXX) y pégalo
      en "formspree". Mientras esté vacío, el botón abre tu correo.     */
   contacto: {
-    formspree: "",                          // ej: https://formspree.io/f/xxxxxxxx
+    formspree: "https://formspree.io/f/meewwwdb",                          // ej: https://formspree.io/f/xxxxxxxx
     email: "nvalentinabaudino@gmail.com",
   },
 
