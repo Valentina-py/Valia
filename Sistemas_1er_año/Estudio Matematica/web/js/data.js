@@ -510,7 +510,7 @@ window.APP_DATA = {
       <h2>Valor absoluto (módulo)</h2>
       <div class="callout def">
         <strong class="callout__tag">Definición</strong>
-        $$ |\\alpha| = \\begin{cases} \\alpha & \\text{si } \\alpha \\ge 0 \\\\ -\\alpha & \\text{si } \\alpha < 0 \\end{cases} $$
+        $$ |\\alpha| = \\begin{cases} \\alpha & \\text{si } \\alpha \\ge 0 \\ -\\alpha & \\text{si } \\alpha < 0 \\end{cases} $$
         El valor absoluto es siempre <strong>no negativo</strong>.
       </div>
       <p>Ejemplos: \\(|3| = 3\\), \\(\\;|-9| = 9\\), \\(\\;|-0{,}5| = 0{,}5\\).</p>
@@ -888,6 +888,229 @@ window.APP_DATA = {
       { q: "Neutros en \\(\\mathbb{C}\\)", a: "Aditivo \\((0,0)\\); multiplicativo \\((1,0)\\)." },
       { q: "\\(\\sqrt{-x}\\) con \\(x\\ge0\\)", a: "\\(i\\sqrt{x}\\). Ej: \\(\\sqrt{-16}=4i\\)." },
       { q: "Complejo real / imaginario puro", a: "Real: \\(\\operatorname{Im}(z)=0\\). Imaginario puro: \\(\\operatorname{Re}(z)=0\\)." },
+    ]
+  },
+
+  /* ===================================================================
+     UNIDAD — FUNCIONES
+     =================================================================== */
+  {
+    id: "funciones",
+    glyph: "ƒ",
+    icon: "reals",
+    title: "Funciones",
+    desc: "Definición, dominio e imagen, crecimiento, positividad, paridad, clasificación, inversa y composición.",
+    html: `
+      <p class="lead">Una <strong>función</strong> describe cómo una magnitud depende de otra. Es la herramienta central para modelar relaciones en matemática.</p>
+
+      <div class="callout def">
+        <strong class="callout__tag">Definición</strong>
+        Una <strong>función</strong> \\(f\\) de un conjunto \\(X\\) (<em>dominio</em>) en un conjunto \\(Y\\) (<em>codominio</em>) asigna a <strong>cada</strong> elemento \\(x\\in X\\) <strong>un único</strong> \\(f(x)\\in Y\\).
+      </div>
+      <p>Una misma relación se puede expresar de tres formas: por <strong>tabla</strong>, por <strong>gráfica</strong> y por <strong>fórmula</strong>.</p>
+
+      <h2>Notación</h2>
+      <div class="formula-box">$$ f:X\\to Y,\\qquad y=f(x) $$</div>
+      <ul>
+        <li>\\(x\\): variable <strong>independiente</strong> (preimagen).</li>
+        <li>\\(y=f(x)\\): variable <strong>dependiente</strong>, la <em>imagen</em> de \\(x\\).</li>
+        <li>\\(y=f(x)\\) es la <strong>regla de correspondencia</strong>.</li>
+      </ul>
+
+      <h2>Prueba de la recta vertical</h2>
+      <div class="callout">
+        <strong class="callout__tag">Clave</strong>
+        Una curva del plano es la gráfica de una función <strong>si y solo si</strong> ninguna recta vertical la corta en más de un punto.
+      </div>
+
+      <h2>Dominio e imagen (rango)</h2>
+      <p>El <strong>dominio</strong> es el conjunto de valores que puede tomar \\(x\\); la <strong>imagen</strong> (o rango) es el conjunto de valores que toma \\(y\\). Si no se aclara, el dominio es el mayor subconjunto de \\(\\mathbb{R}\\) donde la fórmula tiene sentido:</p>
+      <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Tipo de función</th><th>Dominio</th></tr></thead>
+        <tbody>
+          <tr><td>Polinómica</td><td>todos los reales, \\(\\mathbb{R}\\)</td></tr>
+          <tr><td>Racional (cociente)</td><td>\\(\\mathbb{R}\\) salvo donde el denominador es \\(0\\)</td></tr>
+          <tr><td>Con raíz de índice par</td><td>donde el radicando es \\(\\ge 0\\)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\(h(x)=\\sqrt{x+3}\\): se necesita \\(x+3\\ge0 \\Rightarrow x\\ge-3\\). Dominio \\([-3,+\\infty)\\).
+      </div>
+
+      <h2>Crecimiento y decrecimiento</h2>
+      <p>Se analiza la gráfica <strong>de izquierda a derecha</strong> (según los valores de \\(x\\)):</p>
+      <ul>
+        <li><strong>Creciente</strong> en un intervalo si al aumentar \\(x\\) aumenta \\(f(x)\\) (tasa de variación positiva).</li>
+        <li><strong>Decreciente</strong> si al aumentar \\(x\\) disminuye \\(f(x)\\) (tasa negativa).</li>
+      </ul>
+      <div class="callout warn">
+        <strong class="callout__tag">Error común</strong>
+        Los intervalos de crecimiento se leen sobre el eje \\(x\\), <strong>no</strong> sobre el eje \\(y\\).
+      </div>
+
+      <h2>Conjuntos de positividad y negatividad</h2>
+      <ul>
+        <li><strong>Positividad</strong> \\(C^{+}\\): valores de \\(x\\) cuya imagen es positiva (gráfica <em>por encima</em> del eje \\(x\\)).</li>
+        <li><strong>Negatividad</strong> \\(C^{-}\\): valores de \\(x\\) cuya imagen es negativa (gráfica <em>por debajo</em> del eje \\(x\\)).</li>
+      </ul>
+      <p>Se hallan ubicando las <strong>raíces</strong> (donde \\(f(x)=0\\)) y analizando el signo a cada lado.</p>
+
+      <h2>Máximos y mínimos</h2>
+      <p>\\(f\\) tiene un <strong>máximo relativo</strong> en \\(x=a\\) si \\(f(a)\\) es mayor o igual que en los puntos cercanos; <strong>mínimo relativo</strong> si es menor o igual. Los <strong>absolutos</strong> son el mayor y el menor valor en todo el dominio.</p>
+
+      <h2>Funciones pares e impares (simetría)</h2>
+      <div class="formula-box">
+        $$ \\text{Par: } f(-x)=f(x)\\quad(\\text{simetría respecto al eje } y) $$
+        $$ \\text{Impar: } f(-x)=-f(x)\\quad(\\text{simetría respecto al origen}) $$
+      </div>
+      <p>Ej.: \\(f(x)=x^{2}\\) es par; \\(f(x)=x^{3}+x\\) es impar.</p>
+
+      <h2>Inyectiva, sobreyectiva y biyectiva</h2>
+      <ul>
+        <li><strong>Inyectiva</strong>: elementos distintos del dominio tienen imágenes distintas (toda recta horizontal corta a lo sumo una vez).</li>
+        <li><strong>Sobreyectiva</strong>: la imagen coincide con el codominio (cada \\(y\\) tiene al menos una preimagen).</li>
+        <li><strong>Biyectiva</strong>: inyectiva y sobreyectiva a la vez.</li>
+      </ul>
+
+      <h2>Función inversa</h2>
+      <div class="callout def">
+        <strong class="callout__tag">Definición</strong>
+        Si \\(f(a)=b\\), su inversa \\(f^{-1}\\) cumple \\(f^{-1}(b)=a\\). <strong>Solo las funciones biyectivas tienen inversa.</strong>
+      </div>
+      <p>Pasos: (1) escribir \\(y=f(x)\\); (2) intercambiar \\(x\\) e \\(y\\); (3) despejar \\(y\\). Las gráficas de \\(f\\) y \\(f^{-1}\\) son simétricas respecto de la recta \\(y=x\\).</p>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\(y=3x+5\\): intercambio \\(x=3y+5\\), despejo \\(y=\\dfrac{x-5}{3}\\). Entonces \\(f^{-1}(x)=\\dfrac{x-5}{3}\\).
+      </div>
+
+      <h2>Composición de funciones</h2>
+      <p>Aplicar una función al resultado de otra: \\((g\\circ f)(x)=g\\big(f(x)\\big)\\). Existe si \\(\\operatorname{Im}(f)\\subseteq\\operatorname{Dom}(g)\\).</p>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\(f(x)=3x-2,\\ g(x)=x^{2}+3x\\): \\((g\\circ f)(x)=(3x-2)^{2}+3(3x-2)=9x^{2}-3x-2\\).
+      </div>
+      <div class="callout warn">
+        <strong class="callout__tag">Atención</strong>
+        En general \\(g\\circ f \\neq f\\circ g\\): el orden importa.
+      </div>
+    `,
+    quiz: [
+      { q: "¿Cuándo una curva es gráfica de una función?",
+        opts: ["Si pasa por el origen", "Si ninguna recta vertical la corta más de una vez", "Si es simétrica", "Si es creciente"],
+        a: 1, exp: "Prueba de la recta vertical: a cada \\(x\\) un único \\(y\\)." },
+      { q: "El dominio de \\(f(x)=\\sqrt{x-2}\\) es:",
+        opts: ["\\(\\mathbb{R}\\)", "\\(x\\ge 2\\)", "\\(x>2\\)", "\\(x\\le 2\\)"],
+        a: 1, exp: "El radicando debe ser \\(\\ge0\\): \\(x-2\\ge0\\Rightarrow x\\ge2\\)." },
+      { q: "Una función es PAR si:",
+        opts: ["\\(f(-x)=-f(x)\\)", "\\(f(-x)=f(x)\\)", "es creciente", "es biyectiva"],
+        a: 1, exp: "Par = simetría respecto al eje \\(y\\): \\(f(-x)=f(x)\\)." },
+      { q: "Para que una función tenga inversa debe ser:",
+        opts: ["par", "creciente", "biyectiva", "racional"],
+        a: 2, exp: "Solo las funciones biyectivas admiten inversa." },
+      { q: "\\((g\\circ f)(x)\\) significa:",
+        opts: ["\\(g(x)\\cdot f(x)\\)", "\\(g(f(x))\\)", "\\(f(g(x))\\)", "\\(g(x)+f(x)\\)"],
+        a: 1, exp: "Composición: primero \\(f\\), luego \\(g\\) sobre ese resultado." },
+    ],
+    cards: [
+      { q: "¿Qué es una función?", a: "Relación que asigna a cada \\(x\\) del dominio un único \\(f(x)\\)." },
+      { q: "Prueba de la recta vertical", a: "Una curva es función si ninguna recta vertical la corta más de una vez." },
+      { q: "Dominio de una racional", a: "Todos los reales salvo donde el denominador se anula." },
+      { q: "Dominio con raíz par", a: "Donde el radicando es \\(\\ge 0\\)." },
+      { q: "Función par / impar", a: "Par: \\(f(-x)=f(x)\\). Impar: \\(f(-x)=-f(x)\\)." },
+      { q: "Iny / Sob / Biy", a: "Iny: imágenes distintas. Sob: imagen = codominio. Biy: ambas." },
+      { q: "¿Cuándo hay inversa?", a: "Solo si la función es biyectiva." },
+      { q: "Composición \\(g\\circ f\\)", a: "\\(g(f(x))\\); existe si \\(\\mathrm{Im}(f)\\subseteq\\mathrm{Dom}(g)\\)." },
+    ]
+  },
+
+  /* ===================================================================
+     UNIDAD — FUNCIÓN LINEAL
+     =================================================================== */
+  {
+    id: "lineal",
+    glyph: "↗",
+    icon: "reals",
+    title: "Función Lineal",
+    desc: "f(x)=mx+b, pendiente y ordenada, gráfica, rectas paralelas y perpendiculares.",
+    html: `
+      <p class="lead">La <strong>función lineal</strong> es la más simple después de la constante: su gráfica es siempre una <strong>recta</strong>.</p>
+
+      <div class="callout def">
+        <strong class="callout__tag">Definición</strong>
+        $$ f(x) = m\\,x + b \\qquad (m,b\\in\\mathbb{R}) $$
+        \\(m\\) es la <strong>pendiente</strong> y \\(b\\) la <strong>ordenada al origen</strong> (donde la recta corta al eje \\(y\\)).
+      </div>
+
+      <h2>Identificar \\(m\\) y \\(b\\)</h2>
+      <p>Si la ecuación está en forma general \\(Ax+By=C\\), se despeja \\(y\\) para leer \\(m\\) y \\(b\\):</p>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\(2x+4y=1 \\Rightarrow 4y=-2x+1 \\Rightarrow y=-\\tfrac{1}{2}x+\\tfrac{1}{4}\\). Entonces \\(m=-\\tfrac12,\\ b=\\tfrac14\\).
+      </div>
+
+      <h2>Sentido de la pendiente</h2>
+      <p>La pendiente es la razón entre el cambio vertical y el horizontal: \\(m=\\dfrac{\\Delta y}{\\Delta x}\\). Cuanto mayor es \\(|m|\\), más inclinada es la recta.</p>
+      <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>\\(m<0\\)</th><th>\\(m=0\\)</th><th>\\(m>0\\)</th></tr></thead>
+        <tbody><tr><td>decreciente</td><td>constante (recta horizontal)</td><td>creciente</td></tr></tbody>
+      </table>
+      </div>
+
+      <h2>Cómo graficar una recta</h2>
+      <ul>
+        <li><strong>Por dos puntos</strong>: se arma una tabla con dos valores de \\(x\\) y se unen.</li>
+        <li><strong>Por las intercepciones</strong>: con \\(x=0\\) se obtiene el corte con el eje \\(y\\) en \\((0,b)\\); con \\(y=0\\) el corte con el eje \\(x\\).</li>
+        <li><strong>Por la pendiente</strong>: desde \\((0,b)\\), si \\(m=\\tfrac{p}{q}\\), se avanza \\(q\\) en \\(x\\) y \\(p\\) en \\(y\\).</li>
+      </ul>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        \\(y=2x-3\\): corta el eje \\(y\\) en \\(-3\\); con \\(y=0\\Rightarrow x=\\tfrac32\\). Pendiente \\(2\\): por cada \\(+1\\) en \\(x\\), \\(+2\\) en \\(y\\).
+      </div>
+
+      <h2>Ecuación de la recta</h2>
+      <div class="formula-box">
+        $$ \\text{Punto–pendiente: } y - y_{0} = m\\,(x - x_{0}) $$
+        $$ \\text{Por dos puntos: } m = \\frac{y_{2} - y_{1}}{x_{2} - x_{1}} $$
+      </div>
+
+      <h2>Rectas paralelas y perpendiculares</h2>
+      <ul>
+        <li><strong>Paralelas</strong>: tienen la <strong>misma</strong> pendiente \\((m_{1} = m_{2})\\).</li>
+        <li><strong>Perpendiculares</strong>: sus pendientes son <em>opuestas e inversas</em>, es decir \\(m_{1}\\cdot m_{2} = -1\\).</li>
+      </ul>
+      <div class="callout tip">
+        <strong class="callout__tag">Ejemplo</strong>
+        Recta perpendicular a \\(2x+y=-3\\) (o sea \\(y=-2x-3\\), \\(m=-2\\)) que pasa por \\((-2,1)\\): la nueva pendiente es \\(\\tfrac12\\). Con punto–pendiente: \\(y-1=\\tfrac12(x+2)\\Rightarrow y=\\tfrac12x+2\\).
+      </div>
+    `,
+    quiz: [
+      { q: "En \\(y=mx+b\\), \\(b\\) es:",
+        opts: ["la pendiente", "la ordenada al origen", "una raíz", "el dominio"],
+        a: 1, exp: "\\(b\\) es donde la recta corta al eje \\(y\\)." },
+      { q: "Si \\(m<0\\), la función lineal es:",
+        opts: ["creciente", "constante", "decreciente", "par"],
+        a: 2, exp: "Pendiente negativa ⇒ recta decreciente." },
+      { q: "Dos rectas son paralelas si:",
+        opts: ["tienen la misma ordenada", "tienen la misma pendiente", "se cortan", "\\(m_{1} m_{2}=-1\\)"],
+        a: 1, exp: "Paralelas ⇔ igual pendiente." },
+      { q: "Dos rectas son perpendiculares si el producto de sus pendientes es:",
+        opts: ["\\(0\\)", "\\(1\\)", "\\(-1\\)", "indefinido"],
+        a: 2, exp: "\\(m_{1}\\cdot m_{2}=-1\\) (opuestas e inversas)." },
+      { q: "La recta \\(y=2x-3\\) corta al eje \\(y\\) en:",
+        opts: ["\\(2\\)", "\\(-3\\)", "\\(\\tfrac32\\)", "\\(0\\)"],
+        a: 1, exp: "Con \\(x=0\\): \\(y=-3\\). La ordenada al origen es \\(-3\\)." },
+    ],
+    cards: [
+      { q: "Forma de la función lineal", a: "\\(f(x)=mx+b\\): \\(m\\) pendiente, \\(b\\) ordenada al origen." },
+      { q: "¿Qué es la pendiente?", a: "\\(m=\\dfrac{\\Delta y}{\\Delta x}\\): cambio vertical sobre horizontal." },
+      { q: "Signo de la pendiente", a: "\\(m>0\\) creciente, \\(m<0\\) decreciente, \\(m=0\\) constante." },
+      { q: "Rectas paralelas", a: "Misma pendiente: \\(m_{1}=m_{2}\\)." },
+      { q: "Rectas perpendiculares", a: "\\(m_{1}\\cdot m_{2}=-1\\) (opuestas e inversas)." },
+      { q: "Ecuación punto–pendiente", a: "\\(y-y_{0}=m(x-x_{0})\\)." },
     ]
   }
 
