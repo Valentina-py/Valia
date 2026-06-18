@@ -60,7 +60,9 @@ Definidas en `_hub/config.js` → `grupos`. Rutas relativas con espacios en %20:
 - [ ] Activar proveedor Google en Supabase (la usuaria lo está haciendo; Google OAuth es gratis).
 - [ ] Subir a Vercel; luego configurar Site URL / Redirect URLs y "Confirm email" en Supabase.
 - [ ] Verificar login real y subida de apuntes una vez publicado.
-- [ ] Pegar enlaces de PayPal y Mercado Pago en `config.js`.
+- [x] Enlaces de PayPal y Mercado Pago pegados en `config.js`.
+- [x] Logo V/check (favicon + `.logo` del navbar/footer via hub.js/panel.js).
+- [x] Formulario de contacto (sección `#contacto`) con Formspree (`config.contacto.formspree`); fallback a mailto.
 - [ ] AdSense: solicitar tras publicar; redactar política de privacidad; pegar `ca-pub-...` y colocar slots.
 - [ ] Sistema de Computación sigue incompleta (faltan JS); recolor aplicado pero no funcional aún.
 - [ ] (Ideas a futuro) progreso unificado por materia, buscador global, gamificación de rachas,
