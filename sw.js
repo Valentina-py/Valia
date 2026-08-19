@@ -2,11 +2,12 @@
    - HTML / CSS / JS: network-first (siempre lo último; sin conexión → copia en caché).
    - Íconos / manifest: cache-first (carga instantánea).
    Al cambiar el contenido, subí el número de versión (CACHE) para forzar el refresco. */
-const CACHE = "valia-hub-v1";
+const CACHE = "valia-hub-v2";
 const ASSETS = [
   "./",
   "./index.html",
   "./_hub/hub.css",
+  "./_hub/updates.css",
   "./_hub/hub.js",
   "./_hub/config.js",
   "./site.webmanifest",

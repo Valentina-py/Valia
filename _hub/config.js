@@ -22,6 +22,14 @@ window.HUB_CONFIG = {
     bucket: "apuntes",
   },
 
+  /* --- Funciones disponibles ----------------------------------------
+     La subida queda pausada tanto en la interfaz como en panel.js.
+     Para bloquearla también en Supabase, ejecuta el SQL incluido en
+     SUPABASE-PAUSAR-SUBIDAS.sql.                                      */
+  funciones: {
+    permitirSubidas: false,
+  },
+
   /* --- Donativos / pagos --------------------------------------------
      Pega tus enlaces. Si dejas uno vacío, ese botón no aparece.      */
   pagos: {

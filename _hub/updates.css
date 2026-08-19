@@ -1,0 +1,100 @@
+/* Ajustes temporales de producto · 19/08/2026
+   Mantener separado de hub.css para preservar las personalizaciones existentes. */
+
+.uploads-paused {
+  margin: 24px 0;
+  padding: 24px 26px;
+  border-style: dashed;
+}
+
+.uploads-paused h3 {
+  margin: 6px 0 8px;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.uploads-paused p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.panel-grid.uploads-disabled {
+  grid-template-columns: minmax(0, 780px);
+  justify-content: center;
+}
+
+.support-quiet {
+  max-width: 980px;
+  margin: 0 auto 20px;
+  text-align: left;
+}
+
+.support-quiet details {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+.support-quiet summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: .78rem;
+  letter-spacing: .03em;
+  transition: color .15s;
+}
+
+.support-quiet summary:hover,
+.support-quiet details[open] summary {
+  color: var(--text);
+}
+
+.support-quiet__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 0 4px;
+}
+
+.support-quiet__content p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.support-quiet .pay-row {
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.support-quiet .pay-btn,
+.support-quiet .pay-btn.paypal,
+.support-quiet .pay-btn.mp {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+.support-quiet .pay-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  box-shadow: none;
+  transform: none;
+}
+
+@media (max-width: 640px) {
+  .support-quiet__content {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .support-quiet .pay-row {
+    justify-content: flex-start;
+  }
+}

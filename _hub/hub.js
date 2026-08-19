@@ -138,7 +138,7 @@
   const closeModal = () => modal.classList.remove("open");
   $("#loginNavBtn").addEventListener("click", openModal);
   $("#panelBtn").addEventListener("click", () => { location.href = "panel.html"; });
-  $("#heroLoginBtn").addEventListener("click", () => { if (isLogged()) location.href = "panel.html"; else openModal(); });
+  $("#heroLoginBtn") && $("#heroLoginBtn").addEventListener("click", () => { if (isLogged()) location.href = "panel.html"; else openModal(); });
   $("#lockedLoginBtn") && $("#lockedLoginBtn").addEventListener("click", openModal);
   $("#modalClose").addEventListener("click", closeModal);
   modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
@@ -158,7 +158,7 @@
     b.classList.add("active");
     mode = b.dataset.tab;
     $("#modalTitle").textContent = mode === "login" ? "Inicia sesión" : "Crea tu cuenta";
-    $("#modalSub").textContent = mode === "login" ? "Accede para subir y guardar tus apuntes." : "Es gratis. Solo necesitas un correo.";
+    $("#modalSub").textContent = mode === "login" ? "Accede a tu cuenta de Valía." : "Es gratis. Solo necesitas un correo.";
     $("#authSubmit").textContent = mode === "login" ? "Entrar" : "Crear cuenta";
     $$(".modal .signup-only").forEach((el) => { el.hidden = mode !== "signup"; });
     setMsg("", "");
@@ -287,7 +287,7 @@
       if (!error && data) items = data.map((d) => ({ titulo: d.titulo, materia: d.materia, name: (d.file_path || "").split("/").pop(), url: d.url }));
     }
     if (!items.length) {
-      list.innerHTML = `<div class="empty">Todavía no hay apuntes. Sé el primero en subir uno.</div>`;
+      list.innerHTML = `<div class="empty">Todavía no hay apuntes disponibles.</div>`;
       count.textContent = "0 apuntes"; return;
     }
     count.textContent = items.length + (items.length === 1 ? " apunte" : " apuntes");

@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="_hub/hub.css" />
+  <link rel="stylesheet" href="_hub/updates.css" />
 </head>
 <body>
 
@@ -56,9 +57,15 @@
         </div>
       </div>
 
-      <div class="panel-grid">
+      <div class="panel uploads-paused" id="uploadsPaused" hidden>
+        <span class="eyebrow">Apuntes</span>
+        <h3>Las subidas están pausadas temporalmente</h3>
+        <p>Por el momento no se pueden cargar archivos nuevos. Los apuntes que ya existan siguen disponibles para consultar o eliminar.</p>
+      </div>
+
+      <div class="panel-grid" id="panelGrid">
         <!-- Subir -->
-        <div class="panel">
+        <div class="panel" id="uploadPanel">
           <h3>Subir apunte</h3>
           <p class="hint">PDF, imagen, Word o lo que uses.</p>
           <div id="uploadForm">

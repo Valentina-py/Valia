@@ -1,11 +1,12 @@
 /* =======================================================================
    PANEL DE USUARIO · Valía
-   Página propia (panel.html): perfil, estadísticas, subir apuntes y "mis apuntes".
+   Página propia (panel.html): perfil, estadísticas y "mis apuntes".
    Requiere sesión iniciada; si no hay, muestra aviso para iniciar sesión.
    ======================================================================= */
 (function () {
   "use strict";
   const C = window.HUB_CONFIG || {};
+  const uploadsEnabled = !!(C.funciones && C.funciones.permitirSubidas);
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
@@ -57,6 +58,12 @@
   const sb = hasSb ? window.supabase.createClient(C.supabase.url, C.supabase.anonKey) : null;
   let currentUser = null;
 
+  if (!uploadsEnabled) {
+    $("#uploadPanel").hidden = true;
+    $("#uploadsPaused").hidden = false;
+    $("#panelGrid").classList.add("uploads-disabled");
+  }
+
   /* ---------- Materias en el selector ---------- */
   const sel = $("#apMateria");
   (C.grupos || []).forEach((g) => (g.materias || []).forEach((m) => {
@@ -92,7 +99,17 @@
 
   /* ---------- Subir ---------- */
   const uploadBtn = $("#uploadBtn");
+  if (!uploadsEnabled) {
+    uploadBtn.disabled = true;
+    fileInput.disabled = true;
+  }
   uploadBtn.addEventListener("click", async () => {
+    if (!uploadsEnabled) {
+      const msg = $("#uploadMsg");
+      msg.className = "msg err";
+      msg.textContent = "La subida de archivos está pausada temporalmente.";
+      return;
+    }
     const titulo = $("#apTitulo").value.trim();
     const materia = sel.value === "__otra__" ? apOtra.value.trim() : sel.value;
     const file = fileInput.files[0];
@@ -129,7 +146,7 @@
     $("#statMateriasUser").textContent = new Set(items.map((i) => i.materia || "General")).size;
     $("#statUltimo").textContent = items[0] ? (items[0].titulo.length > 13 ? items[0].titulo.slice(0, 13) + "…" : items[0].titulo) : "—";
     $("#misCount").textContent = items.length + (items.length === 1 ? " apunte" : " apuntes");
-    if (!items.length) { wrap.innerHTML = `<div class="empty">Todavía no subiste apuntes. Usá el formulario para subir el primero.</div>`; return; }
+    if (!items.length) { wrap.innerHTML = `<div class="empty">No hay apuntes asociados a esta cuenta.</div>`; return; }
     wrap.innerHTML = items.map((a) => `
       <div class="apunte-item">
         <div class="fico">${icon(fileIconName(a.name), 20)}</div>
