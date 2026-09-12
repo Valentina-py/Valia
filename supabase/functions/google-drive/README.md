@@ -2,7 +2,10 @@
 
 La función recibe archivos como `multipart/form-data` y los organizará en:
 
-`Valia/<materia>/<tipo de material>/`
+`Valia/<año de la carrera>/<materia>/<tipo de material>/`
+
+Los identificadores de las carpetas de Primer, Segundo y Tercer Año de Sistemas
+Loutaif están configurados en la función.
 
 Secretos requeridos en Supabase Edge Functions:
 

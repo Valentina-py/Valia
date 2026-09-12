@@ -7,6 +7,12 @@ const cors = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+const YEAR_FOLDERS: Record<string, string> = {
+  "Primer Año - Sistemas Loutaif": "1ZCnvb90BLhfg0tkJuWBJD_L8x5p0xrNJ",
+  "Segundo Año - Sistemas Loutaif": "1QCvc1KNTy21u4E1TwAtOcQyn91waRrkq",
+  "Tercer Año - Sistemas Loutaif": "1VvS_nIYS79M9isWEG8K0Fi2wQ0NfJISe",
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
   if (req.method !== "POST") return new Response(JSON.stringify({ error: "Método no permitido" }), { status: 405, headers: { ...cors, "Content-Type": "application/json" } });
@@ -17,13 +23,16 @@ serve(async (req) => {
   if (!contentType.includes("multipart/form-data")) return new Response(JSON.stringify({ error: "Enviá un archivo como multipart/form-data" }), { status: 400, headers: { ...cors, "Content-Type": "application/json" } });
   const form = await req.formData();
   const file = form.get("file");
+  const carreraAnio = String(form.get("carrera_anio") || "");
   const materia = String(form.get("materia") || "General");
   const tipo = String(form.get("tipo") || "Material");
   if (!(file instanceof File)) return new Response(JSON.stringify({ error: "Falta el archivo" }), { status: 400, headers: { ...cors, "Content-Type": "application/json" } });
+  const yearFolderId = YEAR_FOLDERS[carreraAnio];
+  if (!yearFolderId) return new Response(JSON.stringify({ error: "Seleccioná un año válido de Sistemas Loutaif" }), { status: 400, headers: { ...cors, "Content-Type": "application/json" } });
 
   const hasRoot = Boolean(Deno.env.get("GOOGLE_DRIVE_ROOT_FOLDER_ID"));
   const hasOAuth = Boolean(Deno.env.get("GOOGLE_CLIENT_ID") && Deno.env.get("GOOGLE_CLIENT_SECRET"));
   if (!hasRoot || !hasOAuth) return new Response(JSON.stringify({ error: "Faltan secretos de Google Drive en Supabase" }), { status: 500, headers: { ...cors, "Content-Type": "application/json" } });
 
-  return new Response(JSON.stringify({ ok: false, pending: true, message: `Archivo recibido para ${materia}/${tipo}. Falta completar la autorización OAuth de Drive.` }), { status: 501, headers: { ...cors, "Content-Type": "application/json" } });
+  return new Response(JSON.stringify({ ok: false, pending: true, destination: { carreraAnio, yearFolderId, materia, tipo }, message: `Archivo recibido para ${carreraAnio}/${materia}/${tipo}. Falta completar la autorización OAuth de Drive.` }), { status: 501, headers: { ...cors, "Content-Type": "application/json" } });
 });
