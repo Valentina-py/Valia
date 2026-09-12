@@ -1,0 +1,9 @@
+{
+  "name": "Valía · Programación II",
+  "short_name": "Prog II",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#09090c",
+  "theme_color": "#7C3AED",
+  "icons": [{ "src": "../../../favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

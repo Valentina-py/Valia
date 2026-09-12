@@ -2,7 +2,7 @@
    - HTML / CSS / JS: network-first (siempre lo último; sin conexión → copia en caché).
    - Íconos / manifest: cache-first (carga instantánea).
    Al cambiar el contenido, subí el número de versión (CACHE) para forzar el refresco. */
-const CACHE = "valia-hub-v2";
+const CACHE = "valia-hub-v3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -21,7 +21,7 @@ self.addEventListener("install", (e) => {
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith("valia-hub-") && k !== CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });

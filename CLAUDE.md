@@ -33,10 +33,13 @@ su hub de estudio y pregunta en qué quiere avanzar hoy. NO inventes datos: usa 
 - PWA del hub: `favicon.svg`, `site.webmanifest`, `sw.js` en la raíz; meta OG/Twitter en `index.html`.
 - Deploy: `vercel.json` listo (sitio estático, sin build).
 
-## Materias (12) y sus rutas
+## Materias (16) y sus rutas
 Definidas en `_hub/config.js` → `grupos`. Rutas relativas con espacios en %20:
 - Sistemas 1.er año: Fundamentos de Programación, Matemática, PP1, Programación 1, Sistemas Operativos
-- Sistemas 2.º año: Electrónica, Redes, Estadística y PP2 (Redes abre en `Estudio Redes/index.html`, sin subcarpeta /web)
+- Sistemas 2.º año: Programación II, Programación Web, Redes Informáticas, Estadística,
+  Práctica Profesionalizante II y Robótica y Automatización. Base de Datos e Ingeniería
+  de Software aparecen como pendientes hasta recibir material. Redes abre en
+  `Estudio Redes/index.html`, sin subcarpeta `/web`.
 - Turismo: Inglés
 - UNSA: Sistema de la Computación, Teoría de Algoritmos y Datos
 

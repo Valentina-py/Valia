@@ -383,7 +383,7 @@ footer { text-align: center; padding: 18px; color: #666; }
 
       <h2>Paso 3 · La interactividad (JavaScript)</h2>
       <pre>document.getElementById("btn").addEventListener("click", function () {
-  alert("¡Hola! Gracias por visitar mi sitio 😊");
+  alert("¡Hola! Gracias por visitar mi sitio");
 });</pre>
 
       <div class="callout tip"><strong class="callout__tag">Desafío</strong> Cambiá los colores con el <a href="#/tool/degradados">Generador de degradados</a>, agregá una sección más y, cuando te guste, <a href="#/unit/publicar">publicalo</a> en internet.</div>
@@ -465,6 +465,53 @@ git push -u origin main  # sube los cambios</pre>
       { q: "Vercel / Netlify", a: "Vercel: importás el repo y se redeploya al pushear. Netlify Drop: arrastrás la carpeta." },
       { q: "DevTools (F12)", a: "Inspeccionar HTML, probar CSS en vivo y ver errores de consola." },
       { q: ".gitignore", a: "Lista de archivos/carpetas que NO se suben al repositorio." },
+    ]
+  },
+
+  /* ===================================================================
+     UNIDAD 7 — PROGRAMA 2026 Y RECORRIDO
+     =================================================================== */
+  {
+    id: "programa2026",
+    glyph: "07",
+    icon: "book",
+    title: "Programa 2026 y recorrido",
+    desc: "Los siete módulos oficiales, criterios de evaluación y condiciones de regularidad y promoción.",
+    tool: null,
+    html: `
+      <p class="lead">La unidad curricular anual forma el perfil de <strong>Programador Junior</strong>. El programa combina servidor y entorno, redes, desarrollo web, bases de datos y trabajo colaborativo.</p>
+
+      <h2>Mapa oficial de contenidos</h2>
+      <div class="tbl-wrap"><table class="tbl tbl--left"><thead><tr><th>Unidad</th><th>Contenido</th><th>Estado en Valía</th></tr></thead><tbody>
+        <tr><td>1</td><td>Servidor web y entorno de desarrollo</td><td>Apunte disponible</td></tr>
+        <tr><td>2</td><td>Redes LAN cableadas e inalámbricas, UTP, direccionamiento y presupuesto</td><td>Programa incorporado; desarrollo específico pendiente de la cátedra</td></tr>
+        <tr><td>3</td><td>Apache Web Server y HTML5</td><td>Apunte y práctica disponibles</td></tr>
+        <tr><td>4</td><td>CSS3, media queries, Flexbox y Grid</td><td>Apunte y práctica disponibles</td></tr>
+        <tr><td>5</td><td>JavaScript, DOM y eventos</td><td>Apunte disponible</td></tr>
+        <tr><td>6</td><td>Sistema gestor de bases de datos y PHP</td><td>Programa incorporado; desarrollo específico pendiente de la cátedra</td></tr>
+        <tr><td>7</td><td>Git, colaboración y metodología ágil</td><td>Introducción a Git disponible; ampliación pendiente</td></tr>
+      </tbody></table></div>
+
+      <h2>Criterios de evaluación</h2>
+      <ul><li>Entrega de trabajos prácticos en término.</li><li>Evaluación cuantitativa, cualitativa y seguimiento continuo.</li><li>Participación activa, talleres y realización de proyectos.</li><li>Asistencia, compromiso con las pasantías y responsabilidad.</li></ul>
+
+      <h2>Regularidad y promoción</h2>
+      <div class="tbl-wrap"><table class="tbl tbl--left"><thead><tr><th>Condición</th><th>Regularizar</th><th>Promocionar</th></tr></thead><tbody><tr><td>Asistencia</td><td>70 %</td><td>80 %</td></tr><tr><td>Trabajos prácticos</td><td>80 % presentados</td><td>90 % presentados</td></tr><tr><td>Parciales</td><td>2 aprobados con 6 o más, o recuperatorios</td><td>2 aprobados con 7 o más, sin recuperatorio</td></tr><tr><td>Calificación final de cursado</td><td>Según regularidad</td><td>7 o más</td></tr></tbody></table></div>
+      <div class="callout warn"><strong class="callout__tag">Examen regular</strong> Para aprobar en condición regular, el programa indica una nota mínima de 4/10, equivalente al menos al 60 % del examen.</div>
+    `,
+    quiz: [
+      { q: "¿Qué porcentaje de asistencia exige la regularidad?", opts: ["50 %", "60 %", "70 %", "80 %"], a: 2, exp: "La condición de regularidad establece 70 % de asistencia." },
+      { q: "Para promocionar, los dos parciales deben aprobarse con…", opts: ["4 o más", "6 o más", "7 o más y sin recuperatorio", "10 obligatorio"], a: 2, exp: "La promoción exige 7 o más en ambos parciales; recurrir a recuperatorio impide promocionar." },
+      { q: "¿Qué unidad integra bases de datos y PHP?", opts: ["Unidad 2", "Unidad 4", "Unidad 6", "Unidad 7"], a: 2, exp: "La Unidad 6 cubre SGBD, tablas, PHP, formularios y acceso a datos." },
+      { q: "La Unidad 7 incluye…", opts: ["solo tipografía", "Git, colaboración y metodología ágil", "estadística descriptiva", "electrónica analógica"], a: 1, exp: "Cierra el programa con control de versiones y trabajo ágil." }
+    ],
+    cards: [
+      { q: "Perfil de la materia", a: "Práctica Profesionalizante II: Programador Junior, régimen anual." },
+      { q: "Regularidad: asistencia y TP", a: "70 % de asistencia y 80 % de trabajos prácticos presentados." },
+      { q: "Promoción: asistencia y TP", a: "80 % de asistencia y 90 % de trabajos prácticos presentados." },
+      { q: "Promoción: parciales", a: "Dos parciales con 7 o más y sin recurrir a recuperatorio." },
+      { q: "Unidad 6", a: "SGBD, tablas, normalización, PHP, formularios y operaciones con datos." },
+      { q: "Unidad 7", a: "Git, ramas, fusiones, conflictos, GitHub/GitLab y metodología ágil." }
     ]
   }
 

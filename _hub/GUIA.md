@@ -41,7 +41,7 @@ y revisarse en la versión publicada.
 
 El proyecto usa Vercel y no necesita proceso de compilación. Después de cada despliegue, comprobá:
 
-1. Portada y doce materias.
+1. Portada y dieciséis materias (ocho de segundo año; dos señaladas como pendientes de material).
 2. Inicio y cierre de sesión.
 3. Que el panel no muestre ni permita subir archivos.
 4. Que “Colaborar con Valía” permanezca cerrado por defecto.

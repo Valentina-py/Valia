@@ -59,8 +59,13 @@ body {
   transition: background .4s ease, color .4s ease;
 }
 a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
 .container { width: min(1140px, 92vw); margin-inline: auto; }
-section { padding: 96px 0; position: relative; }
+section { padding: clamp(72px, 10vw, 104px) 0; position: relative; }
 .eyebrow {
   display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: .14em;
   text-transform: uppercase; color: var(--accent);
@@ -110,7 +115,18 @@ h2.section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; lett
   display: grid; place-items: center; transition: .2s;
 }
 .icon-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
-@media (max-width: 760px) { .nav-links .link { display: none; } }
+@media (max-width: 760px) {
+  .nav { padding: 10px 0; }
+  .nav-links .link, .user-chip .em { display: none; }
+  .nav-links { gap: 6px; }
+  .brand { font-size: 1.05rem; }
+  .brand .logo { width: 34px; height: 34px; border-radius: 10px; }
+  .btn { padding: 11px 16px; }
+}
+@media (max-width: 410px) {
+  .nav #loginNavBtn { display: none; }
+  .nav .container { width: min(1140px, 94vw); }
+}
 
 /* ---------- HERO ---------- */
 .hero {
@@ -157,6 +173,8 @@ h2.section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; lett
 }
 .card::before { content: ""; position: absolute; inset: 0; background: var(--card-accent, var(--accent)); opacity: 0; transition: opacity .25s; }
 .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+.card:hover::before { opacity: .045; }
+.card > * { position: relative; z-index: 1; }
 .card .ico {
   width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
   font-size: 1.4rem; background: color-mix(in srgb, var(--card-accent, var(--accent)) 16%, var(--surface));
@@ -169,6 +187,12 @@ h2.section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; lett
 .card .bar { height: 5px; border-radius: 999px; background: var(--border); margin-top: 16px; overflow: hidden; }
 .card .bar span { display: block; height: 100%; border-radius: 999px; background: var(--card-accent, var(--accent)); width: var(--p, 0%); transition: width 1s ease; }
 .card .pct { font-size: .76rem; color: var(--muted); margin-top: 7px; }
+.card--pending { cursor: default; border-style: dashed; box-shadow: none; }
+.card--pending:hover { transform: none; border-color: var(--border); box-shadow: none; }
+.card--pending:hover::before { opacity: 0; }
+.card--pending .ico { filter: saturate(.35); }
+.pending-detail { color: var(--muted); font-size: .86rem; line-height: 1.5; margin-top: 9px; }
+.pending-label { display: inline-flex; margin-top: 18px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: .74rem; font-weight: 700; letter-spacing: .02em; }
 
 /* ---------- APUNTES ---------- */
 .apuntes-wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: 30px; align-items: start; }
@@ -355,3 +379,24 @@ h2.section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; lett
 
 /* barra de progreso de scroll */
 .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--grad); z-index: 60; transition: width .1s; }
+
+/* ---------- PULIDO DE EXPERIENCIA ---------- */
+@media (max-width: 560px) {
+  .hero { min-height: 720px; padding-top: 78px; }
+  .hero h1 { font-size: clamp(2.35rem, 12vw, 3.4rem); }
+  .hero .badge { margin-bottom: 20px; padding: 7px 12px; font-size: .76rem; }
+  .hero p.tagline { margin: 18px auto 27px; font-size: 1rem; }
+  .hero .cta-row { width: 100%; padding-inline: 4px; }
+  .hero .cta-row .btn { flex: 1 1 100%; justify-content: center; }
+  .stats { gap: 18px 28px; margin-top: 38px; }
+  .stat b { font-size: 1.65rem; }
+  .stat span { font-size: .78rem; }
+  .cards { grid-template-columns: 1fr; gap: 14px; }
+  .card { padding: 20px; border-radius: 16px; }
+  .panel { padding: 20px; border-radius: 16px; }
+  .ad-band { min-height: 70px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}

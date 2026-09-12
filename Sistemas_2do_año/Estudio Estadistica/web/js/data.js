@@ -355,6 +355,53 @@ window.APP_DATA = {
       { q: "Desvío chico vs grande", a: "Chico: datos homogéneos (cerca de la media). Grande: heterogéneos." },
       { q: "Varianza: población vs muestra", a: "Población: \\(\\div N\\). Muestra: \\(\\div (n-1)\\)." },
     ]
+  },
+
+  /* ===================================================================
+     UNIDAD 5 — INVESTIGACIÓN ESTADÍSTICA
+     =================================================================== */
+  {
+    id: "investigacion",
+    glyph: "05",
+    icon: "chart",
+    title: "Proyecto de Investigación Estadística",
+    desc: "Planificar una encuesta, analizar entre 30 y 50 casos y comunicar resultados con tablas, medidas y gráficos.",
+    tool: null,
+    html: `
+      <p class="lead">El trabajo integrador aplica el recorrido completo: formular un problema, obtener datos válidos, organizarlos, analizarlos y presentar conclusiones respaldadas por evidencia.</p>
+
+      <h2>Las siete etapas</h2>
+      <ol>
+        <li><strong>Tema y problema:</strong> elegir una situación concreta y formular una pregunta investigable.</li>
+        <li><strong>Objetivos:</strong> redactar un objetivo general y objetivos específicos medibles.</li>
+        <li><strong>Población y muestra:</strong> delimitar a quiénes se estudiará y seleccionar entre <strong>30 y 50 personas</strong>.</li>
+        <li><strong>Encuesta:</strong> preparar al menos <strong>8 preguntas</strong> con variables cualitativas y cuantitativas.</li>
+        <li><strong>Organización:</strong> depurar respuestas y construir tablas de frecuencia.</li>
+        <li><strong>Análisis:</strong> calcular media, mediana, moda, rango, varianza y desvío estándar cuando correspondan.</li>
+        <li><strong>Comunicación:</strong> incluir al menos <strong>4 gráficos</strong> y redactar <strong>5 conclusiones</strong> relacionadas con los objetivos.</li>
+      </ol>
+
+      <h2>Qué debe poder verificarse</h2>
+      <div class="tbl-wrap"><table class="tbl tbl--left"><thead><tr><th>Decisión</th><th>Evidencia esperada</th></tr></thead><tbody><tr><td>La muestra responde al problema</td><td>Criterio de selección, tamaño y límites de la población.</td></tr><tr><td>La pregunta mide una variable</td><td>Opciones sin superposición, unidad de medida y tipo de variable.</td></tr><tr><td>El gráfico es adecuado</td><td>Título, fuente, ejes o categorías, escala y porcentajes consistentes.</td></tr><tr><td>La conclusión está justificada</td><td>Referencia explícita a un resultado calculado u observado.</td></tr></tbody></table></div>
+
+      <h2>Rúbrica del trabajo</h2>
+      <p>La guía distribuye la evaluación en: planteamiento y objetivos (15 %), diseño y recolección (15 %), organización (15 %), análisis estadístico (25 %), interpretación y conclusiones (20 %) y presentación (10 %).</p>
+      <div class="callout tip"><strong class="callout__tag">Control final</strong> La suma de frecuencias debe coincidir con el total de respuestas; los porcentajes deben sumar aproximadamente 100 % y cada conclusión debe responder a un objetivo.</div>
+    `,
+    quiz: [
+      { q: "¿Cuántas personas debe incluir la muestra según la guía?", opts: ["5 a 10", "15 a 20", "30 a 50", "Más de 500"], a: 2, exp: "El trabajo establece una muestra de entre 30 y 50 personas." },
+      { q: "¿Cuál es la cantidad mínima de preguntas de la encuesta?", opts: ["4", "6", "8", "12"], a: 2, exp: "La encuesta debe contener al menos ocho preguntas." },
+      { q: "¿Qué sección tiene mayor peso en la rúbrica?", opts: ["Presentación", "Análisis estadístico", "Organización", "Objetivos"], a: 1, exp: "El análisis representa el 25 % de la evaluación." },
+      { q: "Una buena conclusión debe…", opts: ["repetir la pregunta", "basarse en un resultado y responder a un objetivo", "agregar datos no encuestados", "usar solo opiniones"], a: 1, exp: "La interpretación debe apoyarse en la evidencia reunida." }
+    ],
+    cards: [
+      { q: "Tamaño de muestra del proyecto", a: "Entre 30 y 50 personas." },
+      { q: "Preguntas mínimas", a: "Al menos 8 preguntas con variables cualitativas y cuantitativas." },
+      { q: "Gráficos mínimos", a: "Al menos 4 gráficos adecuados a los tipos de variables." },
+      { q: "Conclusiones mínimas", a: "5 conclusiones respaldadas por los resultados." },
+      { q: "Medidas requeridas", a: "Media, mediana, moda, rango, varianza y desvío estándar cuando correspondan." },
+      { q: "Mayor peso de la rúbrica", a: "Análisis estadístico: 25 %." }
+    ]
   }
 
   ]

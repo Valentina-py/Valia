@@ -3,6 +3,11 @@ Chats/
 *.jsonl
 .claude/
 
+# ===== Material fuente y extracciones locales =====
+# Se conservan ordenados para consulta, pero no son parte del sitio publicado.
+materiales-origen/**
+!materiales-origen/README.md
+
 # ===== Material de cursos pesado (no es parte de las webs) =====
 *.pdf
 *.mp4

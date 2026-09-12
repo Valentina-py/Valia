@@ -210,6 +210,62 @@ window.APP_DATA.labs = [
       ]
     }
   ]
+},
+
+/* ============================ LAB 4 ============================ */
+{
+  id: "lab4",
+  glyph: "R4",
+  title: "Laboratorio N° 4 · Enrutamiento",
+  desc: "Rutas estáticas, RIP y diseño de cuatro subredes a partir de 192.168.3.0.",
+  intro: `Configurás routers para que redes diferentes puedan comunicarse, comparás enrutamiento <strong>estático</strong> y <strong>dinámico</strong>, y aplicás subnetting en una topología completa.`,
+  activities: [
+    {
+      name: "Actividad 1 · Rutas estáticas",
+      objetivos: ["Conectar redes remotas mediante rutas configuradas manualmente.", "Distinguir una ruta por próximo salto de una ruta por interfaz de salida."],
+      topologia: `Dos o más LAN conectadas por routers. Cada interfaz debe tener una dirección de su red y estar activa antes de agregar las rutas.`,
+      pasos: [
+        `Asignar IP y máscara a hosts e interfaces de router; habilitar cada interfaz con <span class="cmd">no shutdown</span>.`,
+        `Comprobar primero los enlaces directamente conectados con <span class="cmd">ping</span>.`,
+        `Agregar una ruta por próximo salto: <span class="cmd">ip route RED_DESTINO MASCARA IP_VECINA</span>.`,
+        `En la ruta de regreso, probar la variante por interfaz: <span class="cmd">ip route RED_DESTINO MASCARA INTERFAZ_SALIDA</span>.`,
+        `Revisar la tabla con <span class="cmd">show ip route</span> e identificar las entradas marcadas con S.`,
+        `Probar conectividad extremo a extremo y usar <span class="cmd">tracert</span> para observar los saltos.`,
+        `Guardar la configuración con <span class="cmd">copy running-config startup-config</span>.`
+      ],
+      notas: `Toda comunicación necesita camino de ida y de vuelta. Una ruta correcta en un solo router no garantiza la respuesta.`
+    },
+    {
+      name: "Actividad 2 · Enrutamiento dinámico con RIP",
+      objetivos: ["Publicar las redes conectadas con RIP.", "Observar cómo los routers aprenden rutas automáticamente."],
+      topologia: `La topología de varios routers se configura con direcciones válidas en cada LAN y enlace entre routers.`,
+      pasos: [
+        `Eliminar o separar las rutas estáticas si se desea comparar el resultado.`,
+        `Entrar a configuración: <span class="cmd">router rip</span>.`,
+        `Activar RIPv2 con <span class="cmd">version 2</span> y desactivar el resumen automático con <span class="cmd">no auto-summary</span>.`,
+        `Declarar con <span class="cmd">network</span> cada red directamente conectada que participará del proceso.`,
+        `Repetir la configuración en todos los routers y esperar la convergencia.`,
+        `Verificar con <span class="cmd">show ip route</span> las rutas R y probar ping entre las LAN.`,
+        `Desconectar un enlace, observar la actualización y documentar la diferencia frente a una ruta estática.`
+      ],
+      notas: `RIP usa cantidad de saltos como métrica. RIPv2 transporta información de máscara y admite redes con prefijos modernos.`
+    },
+    {
+      name: "Actividad 3 · Cuatro subredes desde 192.168.3.0",
+      objetivos: ["Dividir una red /24 en al menos cuatro subredes.", "Asignar direcciones sin superposición y verificar el enrutamiento."],
+      topologia: `Red base <span class="cmd">192.168.3.0/24</span>. Para obtener cuatro subredes iguales se toman 2 bits: prefijo <span class="cmd">/26</span>, máscara <span class="cmd">255.255.255.192</span>.`,
+      pasos: [
+        `Completar la tabla: 192.168.3.0/26, 192.168.3.64/26, 192.168.3.128/26 y 192.168.3.192/26.`,
+        `Para cada subred calcular primera IP útil, última IP útil y broadcast.`,
+        `Asignar una subred a cada segmento de la topología sin reutilizar direcciones.`,
+        `Usar en cada host una puerta de enlace perteneciente a su propia subred.`,
+        `Configurar las interfaces, comprobar enlaces directos y luego implementar las rutas indicadas en la guía.`,
+        `Validar todos los pares de origen/destino con ping y documentar cualquier falla por máscara o gateway.`,
+        `Revisar las tablas de rutas y guardar la práctica.`
+      ],
+      notas: `Las cuatro subredes /26 tienen bloques de 64 direcciones y 62 hosts útiles: .0–.63, .64–.127, .128–.191 y .192–.255.`
+    }
+  ]
 }
 
 ];

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Programación II con Python: teoría, trabajos prácticos, modelos de parcial, ejercicios y autoevaluación.">
+  <meta name="theme-color" content="#7C3AED">
+  <title>Programación II · Valía</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../_shared/course.css">
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand">
+      <div class="brand__mark" id="brandMark">Py</div>
+      <div class="brand__text"><strong id="courseName">Programación II</strong><span id="courseMeta">Python · 2026</span></div>
+      <button class="sidebar__close" id="sidebarClose" type="button" aria-label="Cerrar menú">×</button>
+    </div>
+    <div class="sidebar__search"><input id="searchInput" type="search" placeholder="Buscar tema…" autocomplete="off"><div class="search__results" id="searchResults"></div></div>
+    <nav class="sidebar__nav" id="mainNav" aria-label="Contenido de la materia"></nav>
+    <div class="sidebar__footer"><div class="progress__meta"><span>Progreso general</span><strong id="globalProgressPct">0%</strong></div><div class="progress-bar"><span id="globalProgressBar"></span></div></div>
+  </aside>
+  <div class="sidebar__overlay" id="sidebarOverlay"></div>
+  <div class="app">
+    <header class="topbar">
+      <button class="topbar__menu" id="menuToggle" type="button" aria-label="Abrir menú">☰</button>
+      <div class="topbar__crumbs" id="breadcrumbs">Inicio</div>
+      <div class="topbar__actions"><a class="topbar__link" href="../../../index.html"><span>Inicio de Valía</span></a><a class="topbar__link" href="../../../index.html#entrar"><span>Entrar</span></a><button class="icon-btn" id="themeToggle" type="button" aria-label="Cambiar tema"></button></div>
+    </header>
+    <main class="content" id="content"></main>
+    <footer class="footer" id="footerText"></footer>
+  </div>
+  <script src="data.js"></script>
+  <script src="../../_shared/course.js"></script>
+  <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});}</script>
+</body>
+</html>

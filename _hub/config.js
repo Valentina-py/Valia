@@ -72,10 +72,14 @@ window.HUB_CONFIG = {
     {
       titulo: "Sistemas · 2.º año",
       materias: [
-        { nombre: "Electrónica", icono: "zap",   ruta: "Sistemas_2do_a%C3%B1o/Electronica/web/index.html",  color: "#FBBF24" },
-        { nombre: "Redes",       icono: "globe", ruta: "Sistemas_2do_a%C3%B1o/Estudio%20Redes/index.html",   color: "#38BDF8" },
+        { nombre: "Programación II", icono: "terminal", ruta: "Sistemas_2do_a%C3%B1o/Estudio%20Programacion%202/web/index.html", color: "#7C3AED" },
+        { nombre: "Programación Web", icono: "code", ruta: "Sistemas_2do_a%C3%B1o/Estudio%20Programacion%20Web/web/index.html", color: "#0891B2" },
+        { nombre: "Redes Informáticas", icono: "globe", ruta: "Sistemas_2do_a%C3%B1o/Estudio%20Redes/index.html", color: "#38BDF8" },
         { nombre: "Estadística", icono: "chart", ruta: "Sistemas_2do_a%C3%B1o/Estudio%20Estadistica/web/index.html", color: "#2DD4BF" },
-        { nombre: "PP2",         icono: "code",  ruta: "Sistemas_2do_a%C3%B1o/Estudio%20PP2/web/index.html",         color: "#F472B6" },
+        { nombre: "Práctica Profesionalizante II", icono: "briefcase", ruta: "Sistemas_2do_a%C3%B1o/Estudio%20PP2/web/index.html", color: "#F472B6" },
+        { nombre: "Robótica y Automatización", icono: "cpu", ruta: "Sistemas_2do_a%C3%B1o/Estudio%20Robotica/web/index.html", color: "#EA580C" },
+        { nombre: "Base de Datos", icono: "database", estado: "pendiente", detalle: "A la espera del material de la cátedra", color: "#64748B" },
+        { nombre: "Ingeniería de Software", icono: "file", estado: "pendiente", detalle: "A la espera del material de la cátedra", color: "#64748B" },
       ],
     },
     {

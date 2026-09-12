@@ -1,8 +1,8 @@
-/* Service Worker — Estudio Matemática (PWA offline)
+/* Service Worker — Estudio Estadística (PWA offline)
    - HTML / CSS / JS: network-first (siempre lo último; sin conexión → copia en caché).
    - Íconos / manifest: cache-first (carga instantánea).
    Al cambiar el contenido, subí el número de versión (CACHE) para forzar el refresco. */
-const CACHE = "estad-v5";
+const CACHE = "estad-v6";
 const ASSETS = [
   "./",
   "./index.html",
@@ -23,7 +23,7 @@ self.addEventListener("install", (e) => {
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith("estad-") && k !== CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });

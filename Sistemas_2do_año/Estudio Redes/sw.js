@@ -3,7 +3,7 @@
    - HTML / CSS / JS: "network-first" (siempre intenta lo último; offline → copia guardada).
    - Íconos / manifest: "cache-first" (carga instantánea).
    Al cambiar el contenido, subí el número de versión (CACHE) para forzar el refresco. */
-const CACHE = "redes-v13";
+const CACHE = "redes-v14";
 const ASSETS = [
   "./", "./index.html",
   "./css/styles.css",
@@ -18,7 +18,7 @@ self.addEventListener("install", (e) => {
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith("redes-") && k !== CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });

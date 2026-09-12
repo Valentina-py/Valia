@@ -1,8 +1,8 @@
-/* Service Worker — Estudio Matemática (PWA offline)
+/* Service Worker — Práctica Profesionalizante II (PWA offline)
    - HTML / CSS / JS: network-first (siempre lo último; sin conexión → copia en caché).
    - Íconos / manifest: cache-first (carga instantánea).
    Al cambiar el contenido, subí el número de versión (CACHE) para forzar el refresco. */
-const CACHE = "pp2-v2";
+const CACHE = "pp2-v3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -23,7 +23,7 @@ self.addEventListener("install", (e) => {
 self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith("pp2-") && k !== CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });

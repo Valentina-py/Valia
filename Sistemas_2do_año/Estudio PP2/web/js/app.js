@@ -194,7 +194,7 @@
     const totalEx = PRACTICE.reduce((s, t) => s + t.exercises.length, 0);
 
     mount(`
-      <h1 class="page-title">Plataforma de estudio de PP2</h1>
+      <h1 class="page-title">Práctica Profesionalizante II</h1>
       <p class="page-sub">Desarrollo web (HTML · CSS · JavaScript) · Teoría, editor en vivo, práctica de los TP y autoevaluación.</p>
 
       <div class="stat-row">

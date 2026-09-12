@@ -32,6 +32,7 @@
     file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>',
     image: '<rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/>',
     sheet: '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>',
+    database: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>',
     download: '<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>',
     x: '<path d="M18 6 6 18M6 6l12 12"/>',
     settings: '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
@@ -91,14 +92,17 @@
     const cards = g.materias.map((m, i) => {
       totalMaterias++;
       const p = 0;
+      const pending = m.estado === "pendiente" || !m.ruta;
+      const tag = pending ? "div" : "a";
+      const attrs = pending ? 'role="group" aria-label="Material pendiente"' : `href="${m.ruta}"`;
       return `
-        <a class="card reveal d${(i % 4) + 1}" href="${m.ruta}" style="--card-accent:${m.color || "var(--accent)"}">
+        <${tag} class="card reveal d${(i % 4) + 1}${pending ? " card--pending" : ""}" ${attrs} style="--card-accent:${m.color || "var(--accent)"}">
           <div class="ico">${icon(m.icono, 24)}</div>
           <h4>${m.nombre}</h4>
-          <div class="bar"><span style="--p:${p}%"></span></div>
-          <div class="pct">${p ? p + "% completado" : "Sin empezar"}</div>
-          <span class="go">Abrir materia <span class="arrow">&rarr;</span></span>
-        </a>`;
+          ${pending
+            ? `<p class="pending-detail">${m.detalle || "Material todavía no disponible"}</p><span class="pending-label">Material pendiente</span>`
+            : `<div class="bar"><span style="--p:${p}%"></span></div><div class="pct">${p ? p + "% completado" : "Sin empezar"}</div><span class="go">Abrir materia <span class="arrow">&rarr;</span></span>`}
+        </${tag}>`;
     }).join("");
     wrap.innerHTML = `<h3>${g.titulo}</h3><div class="cards">${cards}</div>`;
     mount.appendChild(wrap);

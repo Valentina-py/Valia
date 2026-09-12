@@ -85,4 +85,37 @@ window.APP_DATA.practica = [
     ]
   },
 
+  /* ========================= PROYECTO INTEGRADOR ========================= */
+  {
+    id: "investigacion", unit: "investigacion", glyph: "05",
+    title: "Investigación Estadística · Lista de control",
+    desc: "Planificación y revisión del trabajo integrador de la cátedra.",
+    exercises: [
+      {
+        q: "<strong>1.</strong> Redactá el problema, un objetivo general y al menos tres objetivos específicos.",
+        sol: "El problema debe ser una pregunta que pueda responderse con datos. El objetivo general expresa qué se analizará; los específicos anticipan comparaciones, descripciones o relaciones concretas. Evitá prometer causas si la encuesta solo describe asociaciones."
+      },
+      {
+        q: "<strong>2.</strong> Delimitá población, muestra y técnica de selección para reunir entre 30 y 50 respuestas.",
+        sol: "Definí lugar, período y características de la población. Informá el tamaño exacto de la muestra y cómo se eligieron las personas. Señalá posibles sesgos si la selección fue por conveniencia."
+      },
+      {
+        q: "<strong>3.</strong> Diseñá 8 o más preguntas y clasificá la variable que produce cada una.",
+        sol: "Combiná variables cualitativas nominales/ordinales y cuantitativas discretas/continuas. Revisá que las opciones sean claras, exhaustivas y sin superposición; agregá unidades donde corresponda."
+      },
+      {
+        q: "<strong>4.</strong> Prepará las tablas de frecuencia y elegí al menos cuatro gráficos.",
+        sol: "Verificá totales y porcentajes. Usá barras o sectores para cualitativas, barras para discretas e histograma/polígono para continuas agrupadas. Cada gráfico necesita título, rótulos y escala legible."
+      },
+      {
+        q: "<strong>5.</strong> Calculá e interpretá las medidas pedidas.",
+        sol: "Aplicá media, mediana, moda, rango, varianza y desvío a variables donde tengan sentido. No alcanza con mostrar la cuenta: explicá qué dice el valor dentro del tema investigado."
+      },
+      {
+        q: "<strong>6.</strong> Escribí cinco conclusiones y auditá la entrega con la rúbrica.",
+        sol: "Cada conclusión debe citar un porcentaje, una medida o una comparación y vincularse con un objetivo. Revisá los seis bloques de la rúbrica: 15 % + 15 % + 15 % + 25 % + 20 % + 10 % = 100 %."
+      }
+    ]
+  },
+
 ];

@@ -1,0 +1,9 @@
+{
+  "name": "Valía · Programación Web",
+  "short_name": "Prog Web",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#09090c",
+  "theme_color": "#0891B2",
+  "icons": [{ "src": "../../../favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
