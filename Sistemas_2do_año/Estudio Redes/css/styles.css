@@ -828,3 +828,7 @@ ol.lab-steps > li::before {
 .topbar__login{color:#fff;background:linear-gradient(135deg,#7C3AED,#EC4899);border-color:transparent;}
 .topbar__login:hover{filter:brightness(1.08);}
 @media(max-width:560px){.topbar__actions .nav-hub{padding:7px 10px;font-size:.8rem;}}
+
+.study-material{margin:1.5rem 0;padding:1rem;border:1px solid var(--line,#d8dee9);border-radius:14px;background:var(--surface,#fff);text-align:center}
+.study-material img{display:block;width:100%;max-width:760px;height:auto;margin:0 auto;border-radius:9px}
+.study-material figcaption{margin-top:.65rem;color:var(--muted);font-size:.9rem}

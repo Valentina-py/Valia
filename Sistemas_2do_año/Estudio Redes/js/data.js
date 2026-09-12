@@ -862,6 +862,28 @@ window.APP_DATA.units = [
     { q: "Diferencia entre virus, gusano y troyano", a: "<strong>Virus:</strong> se adjunta a archivos y se propaga al ejecutarlos. <strong>Gusano:</strong> se propaga solo por la red. <strong>Troyano:</strong> parece legítimo pero oculta código malicioso." },
     { q: "¿Cómo se crea una botnet y cómo se usa en un DDoS?", a: "El atacante infecta muchos equipos con malware y los controla remotamente (botnet). En un <strong>DDoS</strong> usa esa botnet para enviar tráfico masivo a un servidor a la vez, saturándolo." }
   ]
+},
+
+/* ===================================================================
+   MATERIAL DE CÁTEDRA · PARCIAL DE REDES
+   =================================================================== */
+{
+  id: "parcial-redes-catedra",
+  glyph: "▣",
+  icon: "book",
+  title: "Parcial de Redes · material de cátedra",
+  desc: "Las dos caras del parcial: HTTP/DNS, FTP, direccionamiento y correo SMTP.",
+  html: `
+    <p class="lead">Este material reúne las dos caras de un mismo parcial de <strong>Redes Informáticas y Comunicación</strong>.</p>
+    <div class="callout tip"><strong class="callout__tag">Cómo usarlo</strong> Revisá cada consigna y luego practicá con los simuladores de direccionamiento, capas y protocolos del curso.</div>
+    <h2>Frente · Ejercicios 1 y 2</h2>
+    <p>Topología con servidor HTTP/DNS; direccionamiento IP; configuración de FTP, usuario y permisos; subida y descarga de un archivo.</p>
+    <figure class="study-material"><img src="materiales/parcial-redes-frente.jpg" alt="Frente del parcial de Redes" loading="lazy"><figcaption>Frente del parcial</figcaption></figure>
+    <h2>Dorso · Ejercicio 3</h2>
+    <p>Topología con servidor DNS y SMTP; dominio <strong>informatica.loutaif.ar</strong>; cuentas de correo y prueba desde los clientes.</p>
+    <figure class="study-material"><img src="materiales/parcial-redes-dorso.jpeg" alt="Dorso del parcial de Redes" loading="lazy"><figcaption>Dorso del parcial</figcaption></figure>`,
+  quiz: [],
+  cards: []
 }
 
 ];
