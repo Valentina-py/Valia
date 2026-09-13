@@ -867,7 +867,7 @@ window.APP_DATA.units = [
 /* ===================================================================
    MATERIAL DE CÁTEDRA · PARCIAL DE REDES
    =================================================================== */
-{
+/*{
   id: "parcial-redes-catedra",
   glyph: "▣",
   icon: "book",
@@ -884,6 +884,6 @@ window.APP_DATA.units = [
     <figure class="study-material"><img src="materiales/parcial-redes-dorso.jpeg" alt="Dorso del parcial de Redes" loading="lazy"><figcaption>Dorso del parcial</figcaption></figure>`,
   quiz: [],
   cards: []
-}
+} */
 
 ];
